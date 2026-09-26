@@ -1,0 +1,1 @@
+Variants B and C are identical: the KAUST dataset provides pre-aggregated behavioral/network/threat scores rather than raw logs, so beyond temporal features there was nothing further to meaningfully engineer without inventing unsupported signal. This is stated explicitly rather than manufacturing an artificial 'engineered features' variant.

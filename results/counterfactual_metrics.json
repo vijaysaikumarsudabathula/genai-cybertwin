@@ -1,0 +1,22 @@
+{
+  "single_feature": {
+    "validity_rate": 0.425,
+    "mean_sparsity": 1.0,
+    "mean_proximity": 2.273681964083525,
+    "mean_plausibility": 1.0
+  },
+  "multi_feature_greedy": {
+    "validity_rate": 0.5916666666666667,
+    "mean_sparsity": 3.0,
+    "mean_proximity": 3.304941322055941,
+    "mean_plausibility": 1.0
+  },
+  "optimization_differential_evolution": {
+    "validity_rate": 0.9,
+    "mean_sparsity": 6.65,
+    "mean_proximity": 2.079731828072772,
+    "mean_plausibility": 1.0
+  },
+  "stability_mean_top_feature_consistency": 1.0,
+  "n_events_evaluated": 120
+}

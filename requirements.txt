@@ -1,0 +1,12 @@
+pandas
+numpy
+scipy
+scikit-learn
+xgboost
+shap
+matplotlib
+joblib
+reportlab
+pydantic
+pytest
+python-docx

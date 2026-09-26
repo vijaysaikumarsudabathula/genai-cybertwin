@@ -1,0 +1,241 @@
+event_idx,method,original_class,original_probability,intervention,new_class,new_probability,probability_change
+1344,single_feature,1,0.7939209342002869,Apply geo-fencing / VPN access restriction,1,0.6108707785606384,-0.18305015563964844
+227,single_feature,1,0.9304672479629517,Apply geo-fencing / VPN access restriction,1,0.8364353179931641,-0.0940319299697876
+13,single_feature,1,0.6762223839759827,Apply geo-fencing / VPN access restriction,2,0.27094709873199463,-0.40527528524398804
+1413,single_feature,2,0.9992184638977051,Run malware remediation (AV/EDR),2,0.966032087802887,-0.033186376094818115
+403,single_feature,2,0.9919530749320984,Run malware remediation (AV/EDR),1,0.32558053731918335,-0.666372537612915
+850,single_feature,1,0.9984068274497986,Enforce MFA / account lockout policy,1,0.9951003193855286,-0.0033065080642700195
+1051,single_feature,2,0.6747580766677856,Run malware remediation (AV/EDR),1,0.013696884736418724,-0.6610611919313669
+112,single_feature,1,0.589438259601593,Apply geo-fencing / VPN access restriction,2,0.15786977112293243,-0.4315684884786606
+247,single_feature,2,0.999769389629364,Run malware remediation (AV/EDR),2,0.9963797926902771,-0.003389596939086914
+237,single_feature,1,0.9681571125984192,Restrict suspicious port activity,1,0.8846532702445984,-0.0835038423538208
+192,single_feature,1,0.9888434410095215,Enforce MFA / account lockout policy,1,0.9302325248718262,-0.05861091613769531
+1383,single_feature,1,0.6517746448516846,Enforce MFA / account lockout policy,2,0.43382734060287476,-0.21794730424880981
+1341,single_feature,2,0.9792951345443726,Run malware remediation (AV/EDR),1,0.06113752722740173,-0.9181576073169708
+536,single_feature,2,0.6965581774711609,Run malware remediation (AV/EDR),1,0.13253726065158844,-0.5640209168195724
+607,single_feature,1,0.8639156222343445,Apply geo-fencing / VPN access restriction,1,0.5775532722473145,-0.28636234998703003
+1382,single_feature,1,0.7070505023002625,Enforce MFA / account lockout policy,2,0.41094788908958435,-0.2961026132106781
+483,single_feature,2,0.5372568368911743,Run malware remediation (AV/EDR),1,0.25381141901016235,-0.28344541788101196
+582,single_feature,2,0.9905840158462524,Run malware remediation (AV/EDR),1,0.4773938059806824,-0.5131902098655701
+118,single_feature,1,0.9216774106025696,Restrict suspicious port activity,1,0.8201050758361816,-0.10157233476638794
+1077,single_feature,2,0.9902114272117615,Run malware remediation (AV/EDR),2,0.8579415678977966,-0.13226985931396484
+1112,single_feature,2,0.5269742608070374,Run malware remediation (AV/EDR),1,0.24311862885951996,-0.2838556319475174
+1166,single_feature,1,0.6558614373207092,Restrict suspicious port activity,1,0.5154246687889099,-0.14043676853179932
+939,single_feature,1,0.9647363424301147,Enforce MFA / account lockout policy,1,0.9156997203826904,-0.049036622047424316
+443,single_feature,1,0.9659579992294312,Apply geo-fencing / VPN access restriction,1,0.8322203755378723,-0.13373762369155884
+103,single_feature,2,0.8650373220443726,Run malware remediation (AV/EDR),1,0.08207535743713379,-0.7829619646072388
+657,single_feature,1,0.9991276860237122,Tighten access control / user re-training,1,0.9932987093925476,-0.005828976631164551
+280,single_feature,1,0.7213417887687683,Enforce MFA / account lockout policy,1,0.6657854914665222,-0.055556297302246094
+256,single_feature,2,0.63084477186203,Run malware remediation (AV/EDR),1,0.04889514297246933,-0.5819496288895607
+568,single_feature,1,0.9927743673324585,Apply geo-fencing / VPN access restriction,1,0.9848759770393372,-0.007898390293121338
+754,single_feature,2,0.9505620002746582,Run malware remediation (AV/EDR),1,0.35319605469703674,-0.5973659455776215
+781,single_feature,2,0.5339494347572327,Run malware remediation (AV/EDR),1,0.13525712490081787,-0.3986923098564148
+733,single_feature,1,0.7799965143203735,Enforce MFA / account lockout policy,1,0.639052152633667,-0.14094436168670654
+1290,single_feature,1,0.9810914993286133,Tighten access control / user re-training,1,0.9042377471923828,-0.07685375213623047
+1281,single_feature,1,0.9709774255752563,Apply network QoS / stability controls,1,0.9126879572868347,-0.05828946828842163
+1085,single_feature,2,0.9977947473526001,Run malware remediation (AV/EDR),2,0.9773755073547363,-0.02041923999786377
+767,single_feature,2,0.9896454811096191,Run malware remediation (AV/EDR),1,0.06981834769248962,-0.9198271334171295
+930,single_feature,2,0.9125056862831116,Run malware remediation (AV/EDR),1,0.07807738333940506,-0.8344283029437065
+1217,single_feature,2,0.9235152006149292,Run malware remediation (AV/EDR),1,0.06417535990476608,-0.8593398407101631
+305,single_feature,1,0.6172284483909607,Tighten access control / user re-training,2,0.27772194147109985,-0.33950650691986084
+1416,single_feature,2,0.8906474113464355,Run malware remediation (AV/EDR),1,0.01590803824365139,-0.8747393731027842
+1280,single_feature,2,0.9973892569541931,Run malware remediation (AV/EDR),1,0.45496007800102234,-0.5424291789531708
+1032,single_feature,2,0.9245356917381287,Run malware remediation (AV/EDR),1,0.17420673370361328,-0.7503289580345154
+717,single_feature,2,0.9959593415260315,Run malware remediation (AV/EDR),2,0.8553154468536377,-0.1406438946723938
+1143,single_feature,1,0.581996500492096,Apply geo-fencing / VPN access restriction,2,0.2154669165611267,-0.36652958393096924
+1561,single_feature,1,0.958296000957489,Apply geo-fencing / VPN access restriction,1,0.8978866934776306,-0.0604093074798584
+1569,single_feature,1,0.9981502294540405,Enforce MFA / account lockout policy,1,0.9952842593193054,-0.0028659701347351074
+179,single_feature,2,0.9999126195907593,Run malware remediation (AV/EDR),2,0.9977594614028931,-0.002153158187866211
+1440,single_feature,2,0.9972637891769409,Run malware remediation (AV/EDR),2,0.9343492388725281,-0.06291455030441284
+789,single_feature,1,0.9882035851478577,Enforce MFA / account lockout policy,1,0.9542936682701111,-0.03390991687774658
+1318,single_feature,1,0.9817075729370117,Apply network QoS / stability controls,1,0.9483837485313416,-0.033323824405670166
+1124,single_feature,2,0.9990969896316528,Run malware remediation (AV/EDR),2,0.991511881351471,-0.007585108280181885
+750,single_feature,2,0.9849580526351929,Run malware remediation (AV/EDR),1,0.3219992518424988,-0.6629588007926941
+752,single_feature,2,0.5393607020378113,Run malware remediation (AV/EDR),1,0.017911890521645546,-0.5214488115161657
+1128,single_feature,1,0.7958279252052307,Apply geo-fencing / VPN access restriction,2,0.44509002566337585,-0.35073789954185486
+1523,single_feature,1,0.8698053359985352,Apply network QoS / stability controls,1,0.6303907632827759,-0.23941457271575928
+1095,single_feature,1,0.988874077796936,Apply network QoS / stability controls,1,0.9541558623313904,-0.034718215465545654
+379,single_feature,1,0.5259720087051392,Restrict suspicious port activity,2,0.3531411290168762,-0.17283087968826294
+827,single_feature,1,0.9247127175331116,Apply geo-fencing / VPN access restriction,1,0.6402884125709534,-0.2844243049621582
+274,single_feature,2,0.9991393089294434,Run malware remediation (AV/EDR),2,0.8769909739494324,-0.12214833498001099
+1288,single_feature,1,0.9976167678833008,Tighten access control / user re-training,1,0.9934831261634827,-0.004133641719818115
+1286,single_feature,1,0.7975239157676697,Apply geo-fencing / VPN access restriction,1,0.5535340905189514,-0.24398982524871826
+54,single_feature,2,0.5567231774330139,Run malware remediation (AV/EDR),1,0.0053620291873812675,-0.5513611482456326
+1320,single_feature,2,0.9997046589851379,Run malware remediation (AV/EDR),2,0.9974783062934875,-0.0022263526916503906
+864,single_feature,1,0.9923547506332397,Tighten access control / user re-training,1,0.9840551018714905,-0.008299648761749268
+668,single_feature,1,0.9975236058235168,Tighten access control / user re-training,1,0.9934760928153992,-0.004047513008117676
+1427,single_feature,1,0.8083245754241943,Enforce MFA / account lockout policy,1,0.6645107269287109,-0.1438138484954834
+1027,single_feature,2,0.9987169504165649,Apply network QoS / stability controls,2,0.9964194297790527,-0.002297520637512207
+904,single_feature,1,0.9590596556663513,Apply network QoS / stability controls,1,0.8907470107078552,-0.0683126449584961
+108,single_feature,1,0.9647698402404785,Enforce MFA / account lockout policy,1,0.9097830057144165,-0.05498683452606201
+998,single_feature,1,0.8958455324172974,Enforce MFA / account lockout policy,1,0.712921679019928,-0.18292385339736938
+1092,single_feature,2,0.991519033908844,Run malware remediation (AV/EDR),2,0.6743645071983337,-0.31715452671051025
+1129,single_feature,1,0.9809291362762451,Tighten access control / user re-training,1,0.9316391348838806,-0.0492900013923645
+1061,single_feature,1,0.9764827489852905,Apply geo-fencing / VPN access restriction,1,0.9330704808235168,-0.04341226816177368
+1345,single_feature,1,0.8689255118370056,Apply network QoS / stability controls,1,0.7817056179046631,-0.08721989393234253
+1136,single_feature,1,0.9013133645057678,Apply geo-fencing / VPN access restriction,1,0.8077132701873779,-0.09360009431838989
+511,single_feature,1,0.6394341588020325,Enforce MFA / account lockout policy,2,0.28948724269866943,-0.34994691610336304
+1326,single_feature,2,0.589810311794281,Run malware remediation (AV/EDR),1,0.05094578489661217,-0.5388645268976688
+1298,single_feature,2,0.6048011779785156,Run malware remediation (AV/EDR),1,0.1478523313999176,-0.456948846578598
+182,single_feature,1,0.994527280330658,Apply geo-fencing / VPN access restriction,1,0.9860358238220215,-0.008491456508636475
+397,single_feature,1,0.9451366662979126,Apply geo-fencing / VPN access restriction,1,0.8073710799217224,-0.13776558637619019
+1507,single_feature,1,0.8066704273223877,Apply geo-fencing / VPN access restriction,2,0.4563993811607361,-0.3502710461616516
+1126,single_feature,2,0.69107985496521,Run malware remediation (AV/EDR),1,0.0766608789563179,-0.6144189760088921
+687,single_feature,1,0.9615382552146912,Tighten access control / user re-training,1,0.7668320536613464,-0.19470620155334473
+778,single_feature,1,0.8279017806053162,Apply geo-fencing / VPN access restriction,1,0.6052636504173279,-0.22263813018798828
+865,single_feature,1,0.7506828308105469,Apply geo-fencing / VPN access restriction,1,0.5070469379425049,-0.243635892868042
+1244,single_feature,2,0.9129588007926941,Run malware remediation (AV/EDR),1,0.29425203800201416,-0.6187067627906799
+1236,single_feature,1,0.8315274715423584,Tighten access control / user re-training,1,0.7936212420463562,-0.0379062294960022
+1448,single_feature,1,0.6289346218109131,Apply geo-fencing / VPN access restriction,2,0.29772791266441345,-0.33120670914649963
+952,single_feature,1,0.9843589067459106,Enforce MFA / account lockout policy,1,0.9652345180511475,-0.019124388694763184
+222,single_feature,2,0.9560825228691101,Run malware remediation (AV/EDR),1,0.16134895384311676,-0.7947335690259933
+1230,single_feature,2,0.7706422805786133,Run malware remediation (AV/EDR),1,0.036723170429468155,-0.7339191101491451
+771,single_feature,2,0.7724331021308899,Run malware remediation (AV/EDR),1,0.09428819268941879,-0.6781449094414711
+951,single_feature,2,0.999398946762085,Run malware remediation (AV/EDR),2,0.9952834248542786,-0.0041155219078063965
+1308,single_feature,2,0.9350436925888062,Run malware remediation (AV/EDR),1,0.06790988147258759,-0.8671338111162186
+708,single_feature,1,0.8924815654754639,Apply geo-fencing / VPN access restriction,1,0.6649534106254578,-0.2275281548500061
+449,single_feature,1,0.96681809425354,Enforce MFA / account lockout policy,1,0.889424204826355,-0.07739388942718506
+1454,single_feature,1,0.9395654797554016,Apply geo-fencing / VPN access restriction,1,0.5978894233703613,-0.3416760563850403
+1203,single_feature,2,0.9995063543319702,Run malware remediation (AV/EDR),2,0.9902750253677368,-0.009231328964233398
+541,single_feature,2,0.9734324812889099,Run malware remediation (AV/EDR),1,0.250006765127182,-0.7234257161617279
+1029,single_feature,2,0.7136006355285645,Apply network QoS / stability controls,1,0.4410195052623749,-0.2725811302661896
+93,single_feature,1,0.774759829044342,Apply geo-fencing / VPN access restriction,2,0.2543943226337433,-0.5203655064105988
+89,single_feature,1,0.5154887437820435,Apply geo-fencing / VPN access restriction,2,0.13585615158081055,-0.3796325922012329
+622,single_feature,1,0.9413383603096008,Apply network QoS / stability controls,1,0.8848358988761902,-0.056502461433410645
+1144,single_feature,2,0.994806706905365,Run malware remediation (AV/EDR),1,0.17601065337657928,-0.8187960535287857
+312,single_feature,1,0.7015855312347412,Restrict suspicious port activity,2,0.47914525866508484,-0.22244027256965637
+1000,single_feature,1,0.8584638833999634,Apply network QoS / stability controls,1,0.7506144642829895,-0.10784941911697388
+1049,single_feature,2,0.7320624589920044,Run malware remediation (AV/EDR),1,0.10139472037553787,-0.6306677386164665
+779,single_feature,2,0.9999113082885742,Run malware remediation (AV/EDR),2,0.9957258701324463,-0.00418543815612793
+1390,single_feature,1,0.8766505718231201,Apply network QoS / stability controls,1,0.7692171335220337,-0.10743343830108643
+561,single_feature,1,0.9550794363021851,Apply network QoS / stability controls,1,0.9070630669593811,-0.048016369342803955
+1248,single_feature,1,0.8221551179885864,Enforce MFA / account lockout policy,1,0.6857584118843079,-0.13639670610427856
+633,single_feature,1,0.616187572479248,Apply geo-fencing / VPN access restriction,2,0.30139198899269104,-0.314795583486557
+137,single_feature,2,0.9853426218032837,Run malware remediation (AV/EDR),1,0.12373529374599457,-0.8616073280572891
+116,single_feature,1,0.9846656322479248,Enforce MFA / account lockout policy,1,0.9667070508003235,-0.01795858144760132
+496,single_feature,2,0.9637300372123718,Run malware remediation (AV/EDR),2,0.6862021088600159,-0.27752792835235596
+217,single_feature,2,0.9995561242103577,Run malware remediation (AV/EDR),2,0.9962198138237,-0.003336310386657715
+66,single_feature,2,0.7453092932701111,Run malware remediation (AV/EDR),1,0.10279618203639984,-0.6425131112337112
+337,single_feature,2,0.9893802404403687,Run malware remediation (AV/EDR),1,0.2320561707019806,-0.7573240697383881
+1534,single_feature,2,0.9828770756721497,Run malware remediation (AV/EDR),1,0.4762050211429596,-0.5066720545291901
+553,single_feature,1,0.7998142838478088,Apply geo-fencing / VPN access restriction,1,0.5895851254463196,-0.21022915840148926
+1344,multi_feature_greedy,1,0.7939209342002869,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Restrict suspicious port activity,2,0.2953145503997803,-0.4986063838005066
+227,multi_feature_greedy,1,0.9304672479629517,Apply geo-fencing / VPN access restriction + Restrict suspicious port activity + Apply network QoS / stability controls,1,0.616370677947998,-0.3140965700149536
+13,multi_feature_greedy,1,0.6762223839759827,Apply geo-fencing / VPN access restriction + Enforce MFA / account lockout policy + Apply traffic shaping / rate limiting,2,0.11933215707540512,-0.5568902269005775
+1413,multi_feature_greedy,2,0.9992184638977051,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Apply geo-fencing / VPN access restriction,2,0.6852284073829651,-0.31399005651474
+403,multi_feature_greedy,2,0.9919530749320984,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.06839431822299957,-0.9235587567090988
+850,multi_feature_greedy,1,0.9984068274497986,Enforce MFA / account lockout policy + Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls,1,0.9839341044425964,-0.014472723007202148
+1051,multi_feature_greedy,2,0.6747580766677856,Run malware remediation (AV/EDR) + Apply network QoS / stability controls + Apply traffic shaping / rate limiting,1,0.003148600459098816,-0.6716094762086868
+112,multi_feature_greedy,1,0.589438259601593,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,2,0.05947655439376831,-0.5299617052078247
+247,multi_feature_greedy,2,0.999769389629364,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Tighten access control / user re-training,2,0.985116183757782,-0.014653205871582031
+237,multi_feature_greedy,1,0.9681571125984192,Restrict suspicious port activity + Apply geo-fencing / VPN access restriction + Tighten access control / user re-training,1,0.5653035640716553,-0.4028535485267639
+192,multi_feature_greedy,1,0.9888434410095215,Enforce MFA / account lockout policy + Apply traffic shaping / rate limiting + Restrict suspicious port activity,1,0.5764946937561035,-0.41234874725341797
+1383,multi_feature_greedy,1,0.6517746448516846,Enforce MFA / account lockout policy + Apply network QoS / stability controls + Apply traffic shaping / rate limiting,2,0.23592111468315125,-0.4158535301685333
+1341,multi_feature_greedy,2,0.9792951345443726,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply traffic shaping / rate limiting,1,0.014990018680691719,-0.9643051158636808
+536,multi_feature_greedy,2,0.6965581774711609,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Restrict suspicious port activity,1,0.056383293122053146,-0.6401748843491077
+607,multi_feature_greedy,1,0.8639156222343445,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,2,0.3537542223930359,-0.5101613998413086
+1382,multi_feature_greedy,1,0.7070505023002625,Enforce MFA / account lockout policy + Apply network QoS / stability controls + Apply traffic shaping / rate limiting,2,0.08506941795349121,-0.6219810843467712
+483,multi_feature_greedy,2,0.5372568368911743,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Tighten access control / user re-training,1,0.14687031507492065,-0.39038652181625366
+582,multi_feature_greedy,2,0.9905840158462524,Run malware remediation (AV/EDR) + Apply network QoS / stability controls + Tighten access control / user re-training,1,0.13285043835639954,-0.8577335774898529
+118,multi_feature_greedy,1,0.9216774106025696,Restrict suspicious port activity + Apply traffic shaping / rate limiting + Enforce MFA / account lockout policy,1,0.6959995627403259,-0.22567784786224365
+1077,multi_feature_greedy,2,0.9902114272117615,Run malware remediation (AV/EDR) + Apply network QoS / stability controls + Enforce MFA / account lockout policy,1,0.37534099817276,-0.6148704290390015
+1112,multi_feature_greedy,2,0.5269742608070374,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Restrict suspicious port activity,1,0.08991450071334839,-0.43705976009368896
+1166,multi_feature_greedy,1,0.6558614373207092,Restrict suspicious port activity + Apply traffic shaping / rate limiting + Tighten access control / user re-training,2,0.18224868178367615,-0.4736127555370331
+939,multi_feature_greedy,1,0.9647363424301147,Enforce MFA / account lockout policy + Tighten access control / user re-training + Apply geo-fencing / VPN access restriction,1,0.6416580677032471,-0.3230782747268677
+443,multi_feature_greedy,1,0.9659579992294312,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Restrict suspicious port activity,1,0.6927033066749573,-0.2732546925544739
+103,multi_feature_greedy,2,0.8650373220443726,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply geo-fencing / VPN access restriction,1,0.009438926354050636,-0.8555983956903219
+657,multi_feature_greedy,1,0.9991276860237122,Tighten access control / user re-training + Apply network QoS / stability controls + Restrict suspicious port activity,1,0.9018034338951111,-0.09732425212860107
+280,multi_feature_greedy,1,0.7213417887687683,Enforce MFA / account lockout policy + Restrict suspicious port activity + Apply traffic shaping / rate limiting,1,0.579510509967804,-0.14183127880096436
+256,multi_feature_greedy,2,0.63084477186203,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply network QoS / stability controls,1,0.009850217029452324,-0.6209945548325777
+568,multi_feature_greedy,1,0.9927743673324585,Apply geo-fencing / VPN access restriction + Enforce MFA / account lockout policy + Restrict suspicious port activity,1,0.9632264375686646,-0.029547929763793945
+754,multi_feature_greedy,2,0.9505620002746582,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply geo-fencing / VPN access restriction,1,0.0989287719130516,-0.8516332283616066
+781,multi_feature_greedy,2,0.5339494347572327,Run malware remediation (AV/EDR) + Apply geo-fencing / VPN access restriction + Restrict suspicious port activity,1,0.04615849256515503,-0.48779094219207764
+733,multi_feature_greedy,1,0.7799965143203735,Enforce MFA / account lockout policy + Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls,2,0.4429556429386139,-0.33704087138175964
+1290,multi_feature_greedy,1,0.9810914993286133,Tighten access control / user re-training + Restrict suspicious port activity + Apply network QoS / stability controls,1,0.62541663646698,-0.3556748628616333
+1281,multi_feature_greedy,1,0.9709774255752563,Apply network QoS / stability controls + Enforce MFA / account lockout policy + Restrict suspicious port activity,1,0.8255764245986938,-0.1454010009765625
+1085,multi_feature_greedy,2,0.9977947473526001,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply traffic shaping / rate limiting,2,0.9476298689842224,-0.050164878368377686
+767,multi_feature_greedy,2,0.9896454811096191,Run malware remediation (AV/EDR) + Apply network QoS / stability controls + Tighten access control / user re-training,1,0.0034793855156749487,-0.9861660955939442
+930,multi_feature_greedy,2,0.9125056862831116,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Apply traffic shaping / rate limiting,1,0.047860037535429,-0.8646456487476826
+1217,multi_feature_greedy,2,0.9235152006149292,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Tighten access control / user re-training,1,0.006785758305341005,-0.9167294423095882
+305,multi_feature_greedy,1,0.6172284483909607,Tighten access control / user re-training + Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls,2,0.11808782070875168,-0.499140627682209
+1416,multi_feature_greedy,2,0.8906474113464355,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.0055911000818014145,-0.8850563112646341
+1280,multi_feature_greedy,2,0.9973892569541931,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Restrict suspicious port activity,1,0.09770604968070984,-0.8996832072734833
+1032,multi_feature_greedy,2,0.9245356917381287,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Tighten access control / user re-training,1,0.06904332339763641,-0.8554923683404922
+717,multi_feature_greedy,2,0.9959593415260315,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,2,0.5915974974632263,-0.4043618440628052
+1143,multi_feature_greedy,1,0.581996500492096,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Enforce MFA / account lockout policy,2,0.08704451471567154,-0.4949519857764244
+1561,multi_feature_greedy,1,0.958296000957489,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,1,0.7566819787025452,-0.20161402225494385
+1569,multi_feature_greedy,1,0.9981502294540405,Enforce MFA / account lockout policy + Tighten access control / user re-training + Restrict suspicious port activity,1,0.9842104911804199,-0.013939738273620605
+179,multi_feature_greedy,2,0.9999126195907593,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Apply geo-fencing / VPN access restriction,2,0.9870443940162659,-0.012868225574493408
+1440,multi_feature_greedy,2,0.9972637891769409,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Tighten access control / user re-training,2,0.790831446647644,-0.20643234252929688
+789,multi_feature_greedy,1,0.9882035851478577,Enforce MFA / account lockout policy + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,1,0.6904418468475342,-0.2977617383003235
+1318,multi_feature_greedy,1,0.9817075729370117,Apply network QoS / stability controls + Restrict suspicious port activity + Apply traffic shaping / rate limiting,1,0.8425828814506531,-0.13912469148635864
+1124,multi_feature_greedy,2,0.9990969896316528,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply network QoS / stability controls,2,0.9714840054512024,-0.02761298418045044
+750,multi_feature_greedy,2,0.9849580526351929,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.06682652235031128,-0.9181315302848816
+752,multi_feature_greedy,2,0.5393607020378113,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Apply network QoS / stability controls,1,0.003781793871894479,-0.5355789081659168
+1128,multi_feature_greedy,1,0.7958279252052307,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Enforce MFA / account lockout policy,2,0.14280840754508972,-0.653019517660141
+1523,multi_feature_greedy,1,0.8698053359985352,Apply network QoS / stability controls + Apply traffic shaping / rate limiting + Restrict suspicious port activity,2,0.31573957204818726,-0.5540657639503479
+1095,multi_feature_greedy,1,0.988874077796936,Apply network QoS / stability controls + Apply geo-fencing / VPN access restriction + Restrict suspicious port activity,1,0.8073888421058655,-0.18148523569107056
+379,multi_feature_greedy,1,0.5259720087051392,Restrict suspicious port activity + Apply network QoS / stability controls + Enforce MFA / account lockout policy,2,0.15347133576869965,-0.3725006729364395
+827,multi_feature_greedy,1,0.9247127175331116,Apply geo-fencing / VPN access restriction + Tighten access control / user re-training + Apply traffic shaping / rate limiting,2,0.34238579869270325,-0.5823269188404083
+274,multi_feature_greedy,2,0.9991393089294434,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Tighten access control / user re-training,2,0.6072278022766113,-0.39191150665283203
+1288,multi_feature_greedy,1,0.9976167678833008,Tighten access control / user re-training + Apply geo-fencing / VPN access restriction + Enforce MFA / account lockout policy,1,0.9839314818382263,-0.013685286045074463
+1286,multi_feature_greedy,1,0.7975239157676697,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Restrict suspicious port activity,2,0.44810599088668823,-0.34941792488098145
+54,multi_feature_greedy,2,0.5567231774330139,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply geo-fencing / VPN access restriction,1,0.0022119234781712294,-0.5545112539548427
+1320,multi_feature_greedy,2,0.9997046589851379,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Tighten access control / user re-training,2,0.9942137598991394,-0.005490899085998535
+864,multi_feature_greedy,1,0.9923547506332397,Tighten access control / user re-training + Apply network QoS / stability controls + Restrict suspicious port activity,1,0.9632760882377625,-0.029078662395477295
+668,multi_feature_greedy,1,0.9975236058235168,Tighten access control / user re-training + Restrict suspicious port activity + Apply network QoS / stability controls,1,0.9647505283355713,-0.03277307748794556
+1427,multi_feature_greedy,1,0.8083245754241943,Enforce MFA / account lockout policy + Restrict suspicious port activity + Apply traffic shaping / rate limiting,2,0.3678740859031677,-0.4404504895210266
+1027,multi_feature_greedy,2,0.9987169504165649,Apply network QoS / stability controls + Tighten access control / user re-training + Apply geo-fencing / VPN access restriction,2,0.9933399558067322,-0.005376994609832764
+904,multi_feature_greedy,1,0.9590596556663513,Apply network QoS / stability controls + Restrict suspicious port activity + Apply geo-fencing / VPN access restriction,1,0.7320262789726257,-0.22703337669372559
+108,multi_feature_greedy,1,0.9647698402404785,Enforce MFA / account lockout policy + Tighten access control / user re-training + Apply geo-fencing / VPN access restriction,1,0.8359648585319519,-0.1288049817085266
+998,multi_feature_greedy,1,0.8958455324172974,Enforce MFA / account lockout policy + Apply geo-fencing / VPN access restriction + Restrict suspicious port activity,2,0.3621908128261566,-0.5336547195911407
+1092,multi_feature_greedy,2,0.991519033908844,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply network QoS / stability controls,1,0.4165554344654083,-0.5749635994434357
+1129,multi_feature_greedy,1,0.9809291362762451,Tighten access control / user re-training + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,1,0.8240923285484314,-0.15683680772781372
+1061,multi_feature_greedy,1,0.9764827489852905,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Enforce MFA / account lockout policy,1,0.7801668047904968,-0.1963159441947937
+1345,multi_feature_greedy,1,0.8689255118370056,Apply network QoS / stability controls + Apply geo-fencing / VPN access restriction + Run malware remediation (AV/EDR),1,0.6032131314277649,-0.2657123804092407
+1136,multi_feature_greedy,1,0.9013133645057678,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Enforce MFA / account lockout policy,2,0.4862816035747528,-0.415031760931015
+511,multi_feature_greedy,1,0.6394341588020325,Enforce MFA / account lockout policy + Apply network QoS / stability controls + Apply geo-fencing / VPN access restriction,2,0.120421402156353,-0.5190127566456795
+1326,multi_feature_greedy,2,0.589810311794281,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Restrict suspicious port activity,1,0.011634260416030884,-0.5781760513782501
+1298,multi_feature_greedy,2,0.6048011779785156,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Restrict suspicious port activity,1,0.048897936940193176,-0.5559032410383224
+182,multi_feature_greedy,1,0.994527280330658,Apply geo-fencing / VPN access restriction + Enforce MFA / account lockout policy + Tighten access control / user re-training,1,0.9349305033683777,-0.05959677696228027
+397,multi_feature_greedy,1,0.9451366662979126,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Restrict suspicious port activity,2,0.4586314857006073,-0.4865051805973053
+1507,multi_feature_greedy,1,0.8066704273223877,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Restrict suspicious port activity,2,0.2959476113319397,-0.510722815990448
+1126,multi_feature_greedy,2,0.69107985496521,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.004588638432323933,-0.686491216532886
+687,multi_feature_greedy,1,0.9615382552146912,Tighten access control / user re-training + Apply traffic shaping / rate limiting + Enforce MFA / account lockout policy,1,0.6664806604385376,-0.29505759477615356
+778,multi_feature_greedy,1,0.8279017806053162,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Enforce MFA / account lockout policy,2,0.4493657052516937,-0.37853607535362244
+865,multi_feature_greedy,1,0.7506828308105469,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Apply network QoS / stability controls,2,0.1695411056280136,-0.5811417251825333
+1244,multi_feature_greedy,2,0.9129588007926941,Run malware remediation (AV/EDR) + Apply network QoS / stability controls + Enforce MFA / account lockout policy,1,0.048911239951848984,-0.8640475608408451
+1236,multi_feature_greedy,1,0.8315274715423584,Tighten access control / user re-training + Apply geo-fencing / VPN access restriction + Enforce MFA / account lockout policy,1,0.734541654586792,-0.0969858169555664
+1448,multi_feature_greedy,1,0.6289346218109131,Apply geo-fencing / VPN access restriction + Apply network QoS / stability controls + Tighten access control / user re-training,2,0.1392931044101715,-0.4896415174007416
+952,multi_feature_greedy,1,0.9843589067459106,Enforce MFA / account lockout policy + Run malware remediation (AV/EDR) + Tighten access control / user re-training,1,0.911302387714386,-0.07305651903152466
+222,multi_feature_greedy,2,0.9560825228691101,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply geo-fencing / VPN access restriction,1,0.06405758112668991,-0.8920249417424202
+1230,multi_feature_greedy,2,0.7706422805786133,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Restrict suspicious port activity,1,0.006418181583285332,-0.764224098995328
+771,multi_feature_greedy,2,0.7724331021308899,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.03148554265499115,-0.7409475594758987
+951,multi_feature_greedy,2,0.999398946762085,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Tighten access control / user re-training,2,0.9621877670288086,-0.03721117973327637
+1308,multi_feature_greedy,2,0.9350436925888062,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Tighten access control / user re-training,1,0.01788189448416233,-0.9171617981046438
+708,multi_feature_greedy,1,0.8924815654754639,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Restrict suspicious port activity,2,0.2921856939792633,-0.6002958714962006
+449,multi_feature_greedy,1,0.96681809425354,Enforce MFA / account lockout policy + Restrict suspicious port activity + Tighten access control / user re-training,2,0.4826883375644684,-0.48412975668907166
+1454,multi_feature_greedy,1,0.9395654797554016,Apply geo-fencing / VPN access restriction + Tighten access control / user re-training + Restrict suspicious port activity,2,0.38273072242736816,-0.5568347573280334
+1203,multi_feature_greedy,2,0.9995063543319702,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Tighten access control / user re-training,2,0.9756976366043091,-0.023808717727661133
+541,multi_feature_greedy,2,0.9734324812889099,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Restrict suspicious port activity,1,0.06199103221297264,-0.9114414490759373
+1029,multi_feature_greedy,2,0.7136006355285645,Apply network QoS / stability controls + Tighten access control / user re-training + Restrict suspicious port activity,1,0.24622546136379242,-0.46737517416477203
+93,multi_feature_greedy,1,0.774759829044342,Apply geo-fencing / VPN access restriction + Restrict suspicious port activity + Apply traffic shaping / rate limiting,2,0.06819324195384979,-0.7065665870904922
+89,multi_feature_greedy,1,0.5154887437820435,Apply geo-fencing / VPN access restriction + Restrict suspicious port activity + Tighten access control / user re-training,2,0.05879862606525421,-0.45669011771678925
+622,multi_feature_greedy,1,0.9413383603096008,Apply network QoS / stability controls + Restrict suspicious port activity + Enforce MFA / account lockout policy,1,0.7725188136100769,-0.16881954669952393
+1144,multi_feature_greedy,2,0.994806706905365,Run malware remediation (AV/EDR) + Apply network QoS / stability controls + Restrict suspicious port activity,1,0.019946694374084473,-0.9748600125312805
+312,multi_feature_greedy,1,0.7015855312347412,Restrict suspicious port activity + Apply network QoS / stability controls + Tighten access control / user re-training,2,0.21882499754428864,-0.4827605336904526
+1000,multi_feature_greedy,1,0.8584638833999634,Apply network QoS / stability controls + Restrict suspicious port activity + Apply geo-fencing / VPN access restriction,1,0.5697169303894043,-0.2887469530105591
+1049,multi_feature_greedy,2,0.7320624589920044,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Restrict suspicious port activity,1,0.018124306574463844,-0.7139381524175406
+779,multi_feature_greedy,2,0.9999113082885742,Run malware remediation (AV/EDR) + Apply traffic shaping / rate limiting + Enforce MFA / account lockout policy,2,0.9896960258483887,-0.010215282440185547
+1390,multi_feature_greedy,1,0.8766505718231201,Apply network QoS / stability controls + Restrict suspicious port activity + Apply traffic shaping / rate limiting,1,0.5105413794517517,-0.3661091923713684
+561,multi_feature_greedy,1,0.9550794363021851,Apply network QoS / stability controls + Apply geo-fencing / VPN access restriction + Enforce MFA / account lockout policy,1,0.7030394077301025,-0.2520400285720825
+1248,multi_feature_greedy,1,0.8221551179885864,Enforce MFA / account lockout policy + Apply geo-fencing / VPN access restriction + Restrict suspicious port activity,1,0.5895462036132812,-0.23260891437530518
+633,multi_feature_greedy,1,0.616187572479248,Apply geo-fencing / VPN access restriction + Apply traffic shaping / rate limiting + Enforce MFA / account lockout policy,2,0.09708960354328156,-0.5190979689359665
+137,multi_feature_greedy,2,0.9853426218032837,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Apply network QoS / stability controls,1,0.04753494635224342,-0.9378076754510403
+116,multi_feature_greedy,1,0.9846656322479248,Enforce MFA / account lockout policy + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.9088404178619385,-0.07582521438598633
+496,multi_feature_greedy,2,0.9637300372123718,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.25023332238197327,-0.7134967148303986
+217,multi_feature_greedy,2,0.9995561242103577,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Enforce MFA / account lockout policy,2,0.9913486838340759,-0.008207440376281738
+66,multi_feature_greedy,2,0.7453092932701111,Run malware remediation (AV/EDR) + Restrict suspicious port activity + Enforce MFA / account lockout policy,1,0.021053656935691833,-0.7242556363344193
+337,multi_feature_greedy,2,0.9893802404403687,Run malware remediation (AV/EDR) + Tighten access control / user re-training + Apply network QoS / stability controls,1,0.020606718957424164,-0.9687735214829445
+1534,multi_feature_greedy,2,0.9828770756721497,Run malware remediation (AV/EDR) + Enforce MFA / account lockout policy + Apply traffic shaping / rate limiting,1,0.1994141936302185,-0.7834628820419312
+553,multi_feature_greedy,1,0.7998142838478088,Apply geo-fencing / VPN access restriction + Tighten access control / user re-training + Enforce MFA / account lockout policy,2,0.3314092755317688,-0.46840500831604004

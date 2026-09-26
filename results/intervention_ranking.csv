@@ -1,0 +1,7 @@
+intervention,mean,count
+Run malware remediation (AV/EDR),-0.47361370627129196,51
+Apply geo-fencing / VPN access restriction,-0.24127936076659423,26
+Restrict suspicious port activity,-0.14415681958198548,5
+Enforce MFA / account lockout policy,-0.10828385458273046,17
+Apply network QoS / stability controls,-0.092996579905351,12
+Tighten access control / user re-training,-0.08006360795762804,9

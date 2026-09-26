@@ -1,0 +1,67 @@
+{
+  "top_10_global": [
+    {
+      "feature": "Device_Response_Time",
+      "shap_importance": 3.204935073852539
+    },
+    {
+      "feature": "Threat_Level_Index",
+      "shap_importance": 0.6953024864196777
+    },
+    {
+      "feature": "Malware_Score",
+      "shap_importance": 0.4283175766468048
+    },
+    {
+      "feature": "Login_Attempts",
+      "shap_importance": 0.4065697193145752
+    },
+    {
+      "feature": "User_Behavior_Score",
+      "shap_importance": 0.08797930926084518
+    },
+    {
+      "feature": "Packet_Retry_Rate",
+      "shap_importance": 0.08306719362735748
+    },
+    {
+      "feature": "Geo_Dispersion",
+      "shap_importance": 0.0754733681678772
+    },
+    {
+      "feature": "Session_Duration",
+      "shap_importance": 0.07489923387765884
+    },
+    {
+      "feature": "Anomaly_Tendency",
+      "shap_importance": 0.06112561747431755
+    },
+    {
+      "feature": "Packet_Length_Anomaly",
+      "shap_importance": 0.05622856318950653
+    }
+  ],
+  "per_class_top_5": {
+    "0": {
+      "Device_Response_Time": 5.584781169891357,
+      "Login_Attempts": 0.8386260867118835,
+      "Threat_Level_Index": 0.6315704584121704,
+      "Malware_Score": 0.354889839887619,
+      "User_Behavior_Score": 0.1261715143918991
+    },
+    "1": {
+      "Device_Response_Time": 2.0855634212493896,
+      "Threat_Level_Index": 0.5458371639251709,
+      "Malware_Score": 0.3838362395763397,
+      "Login_Attempts": 0.300747275352478,
+      "Suspicious_Port_Activity": 0.0943441092967987
+    },
+    "2": {
+      "Device_Response_Time": 1.9444561004638672,
+      "Threat_Level_Index": 0.9084994792938232,
+      "Malware_Score": 0.54622882604599,
+      "Geo_Dispersion": 0.0810471773147583,
+      "Payload_Entropy": 0.08059661835432053
+    }
+  }
+}

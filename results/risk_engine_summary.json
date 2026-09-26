@@ -1,0 +1,26 @@
+{
+  "alpha": 0.6,
+  "anomaly_feature_weights": {
+    "Threat_Level_Index": 0.14496793110208447,
+    "Malware_Score": 0.08930258905620439,
+    "Anomaly_Tendency": 0.012744459043119223,
+    "Device_Response_Time": 0.6682167779731255,
+    "Login_Attempts": 0.0847682428254663
+  },
+  "thresholds": {
+    "LOW": 0,
+    "MEDIUM": 25,
+    "HIGH": 50,
+    "CRITICAL": 75
+  },
+  "category_counts": {
+    "LOW": 806,
+    "HIGH": 438,
+    "CRITICAL": 359
+  },
+  "mean_risk_by_predicted_class": {
+    "0": 5.910311897821265,
+    "1": 72.12519535733566,
+    "2": 79.68483201779406
+  }
+}

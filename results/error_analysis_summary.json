@@ -1,0 +1,50 @@
+{
+  "total_test_events": 1603,
+  "total_errors": 159,
+  "error_rate": 0.0991890205864005,
+  "confusion_pair_counts": {
+    "2_to_1": 88,
+    "1_to_2": 71
+  },
+  "most_common_confusion": "2_to_1",
+  "n_high_confidence_errors_gt_0.8": 72,
+  "n_low_confidence_errors_lt_0.6": 32,
+  "representative_high_confidence_error_shap": {
+    "row_index": 451,
+    "true_label": 1,
+    "predicted_label": 2,
+    "confidence": 0.9955171942710876,
+    "top_contributing_features": [
+      {
+        "feature": "Malware_Score",
+        "value": 40.935346866866205,
+        "shap_contribution": 1.689848780632019
+      },
+      {
+        "feature": "Geo_Dispersion",
+        "value": 0.4055877213320125,
+        "shap_contribution": 0.47500792145729065
+      },
+      {
+        "feature": "Threat_Level_Index",
+        "value": 8.859785685296815,
+        "shap_contribution": 0.4033229351043701
+      },
+      {
+        "feature": "Device_Response_Time",
+        "value": 1604564.7271952613,
+        "shap_contribution": 0.2541578710079193
+      },
+      {
+        "feature": "Payload_Entropy",
+        "value": -18.87405568013056,
+        "shap_contribution": 0.18792350590229034
+      },
+      {
+        "feature": "Traffic_Volume_Variation",
+        "value": 69.30725091201879,
+        "shap_contribution": 0.11827052384614944
+      }
+    ]
+  }
+}

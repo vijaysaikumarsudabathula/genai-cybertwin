@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GenAI-CyberTwin — Security Command Center</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+<style>
+:root{
+  --bg:#0a0e14; --panel:#10161f; --panel-2:#141b26; --border:#232c38;
+  --text:#dfe6ee; --muted:#8b97a6; --accent:#3ecfd6; --accent-2:#6c7fee;
+  --c0:#3ecfd6; --c1:#6c7fee; --c2:#e07a9e;
+  --low:#3ecf8e; --medium:#e8b94c; --high:#ef8354; --critical:#e5484d;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased}
+body{font-size:14px;line-height:1.5}
+a{color:var(--accent)}
+h1,h2,h3,h4{font-weight:600;margin:0 0 8px 0;letter-spacing:-0.01em}
+p{margin:0 0 10px 0;color:var(--text)}
+.muted{color:var(--muted)}
+.mono{font-family:var(--font-mono)}
+
+header.top{display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#0d1219,#0a0e14)}
+header.top .brand{display:flex;align-items:baseline;gap:12px}
+header.top .brand h1{font-size:20px;color:var(--text)}
+header.top .brand .sub{color:var(--muted);font-size:13px}
+header.top .modelbadge{display:flex;gap:10px;align-items:center;font-size:12.5px}
+header.top .modelbadge .pill{border:1px solid var(--border);background:var(--panel);
+  padding:5px 10px;border-radius:5px;color:var(--muted)}
+header.top .modelbadge .pill b{color:var(--accent);font-family:var(--font-mono)}
+
+nav.tabs{display:flex;gap:2px;padding:0 24px;border-bottom:1px solid var(--border);
+  background:var(--bg);overflow-x:auto;position:sticky;top:0;z-index:20}
+nav.tabs button{background:transparent;border:none;color:var(--muted);padding:12px 16px;
+  font-size:13px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-family:var(--font-sans)}
+nav.tabs button:hover{color:var(--text)}
+nav.tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+main{padding:22px 24px 60px 24px;max-width:1400px;margin:0 auto}
+.tab{display:none}
+.tab.active{display:block}
+
+.kpirow{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:14px 16px}
+.kpi .label{color:var(--muted);font-size:12px;margin-bottom:6px}
+.kpi .value{font-size:24px;font-weight:600;font-family:var(--font-mono);color:var(--text)}
+.kpi .value.accent{color:var(--accent)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:16px}
+.panel h3{font-size:14px;color:var(--text);margin-bottom:12px}
+.panel h3 .hint{color:var(--muted);font-weight:400;font-size:12px;margin-left:8px}
+.chart{width:100%;height:320px}
+.chart.tall{height:420px}
+.chart.short{height:220px}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:500;font-size:12px;position:sticky;top:0;background:var(--panel)}
+tr.rowlink{cursor:pointer}
+tr.rowlink:hover{background:var(--panel-2)}
+td.num,th.num{text-align:right;font-family:var(--font-mono)}
+
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11.5px;font-family:var(--font-mono);
+  border:1px solid currentColor}
+.badge.low{color:var(--low)} .badge.medium{color:var(--medium)}
+.badge.high{color:var(--high)} .badge.critical{color:var(--critical)}
+.badge.class0{color:var(--c0)} .badge.class1{color:var(--c1)} .badge.class2{color:var(--c2)}
+
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.filters select,.filters input{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  padding:7px 10px;border-radius:5px;font-size:13px;font-family:var(--font-sans)}
+.filters label{color:var(--muted);font-size:12px;margin-right:4px}
+
+.pager{display:flex;gap:8px;align-items:center;margin-top:10px;justify-content:flex-end}
+.pager button{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  padding:5px 12px;border-radius:5px;cursor:pointer;font-size:12.5px}
+.pager button:disabled{opacity:0.4;cursor:default}
+.pager span{color:var(--muted);font-size:12.5px}
+
+.eventpicker{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.eventpicker input{width:110px}
+.eventpicker button.navbtn{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  padding:7px 12px;border-radius:5px;cursor:pointer}
+.chip{display:inline-block;background:var(--panel-2);border:1px solid var(--border);color:var(--muted);
+  padding:5px 10px;border-radius:14px;font-size:12px;cursor:pointer;margin:2px}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.active{border-color:var(--accent);color:var(--accent);background:rgba(62,207,214,0.08)}
+
+.slider-row{margin-bottom:14px}
+.slider-row .lbl{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px}
+.slider-row .lbl b{color:var(--text);font-weight:500}
+.slider-row .lbl span{color:var(--accent);font-family:var(--font-mono)}
+.slider-row input[type=range]{width:100%;accent-color:var(--accent)}
+
+.narrative{white-space:pre-wrap;font-size:13.5px;line-height:1.65}
+.narrative strong{color:var(--accent)}
+.card{background:var(--panel-2);border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:12px}
+.card .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card .head .fn{color:var(--accent);font-size:12px;font-family:var(--font-mono)}
+
+.note{background:rgba(62,207,214,0.06);border:1px solid rgba(62,207,214,0.25);border-radius:6px;
+  padding:10px 14px;font-size:13px;color:var(--text);margin-bottom:14px}
+.warn{background:rgba(239,131,84,0.07);border:1px solid rgba(239,131,84,0.3)}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.twocol{grid-template-columns:1fr}}
+
+footer.foot{border-top:1px solid var(--border);padding:20px 24px;color:var(--muted);font-size:12px;max-width:1400px;margin:0 auto}
+footer.foot a{color:var(--muted);text-decoration:underline}
+
+.check{color:var(--low)} .cross{color:var(--critical)}
+::-webkit-scrollbar{height:8px;width:8px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <h1>GenAI-CyberTwin</h1>
+    <span class="sub">Explainable counterfactual cyber-threat analysis — KAUST IOAI L1 2026 Round 2</span>
+  </div>
+  <div class="modelbadge">
+    <span class="pill">final model <b id="hdr-model">—</b></span>
+    <span class="pill">macro F1 <b id="hdr-f1">—</b></span>
+    <span class="pill">test events <b id="hdr-n">—</b></span>
+  </div>
+</header>
+
+<nav class="tabs" id="tabnav">
+  <button data-tab="command" class="active">Command Center</button>
+  <button data-tab="explorer">Attack Explorer</button>
+  <button data-tab="investigation">Investigation</button>
+  <button data-tab="explainability">Explainability</button>
+  <button data-tab="simulator">Counterfactual Simulator</button>
+  <button data-tab="evaluation">Model Evaluation</button>
+  <button data-tab="research">Research &amp; Ablation</button>
+  <button data-tab="analyst">AI Security Analyst</button>
+  <button data-tab="eda">Dataset &amp; EDA</button>
+</nav>
+
+<main>
+
+  <!-- ===================== COMMAND CENTER ===================== -->
+  <section class="tab active" id="tab-command">
+    <div class="kpirow" id="cc-kpis"></div>
+    <div class="grid2">
+      <div class="panel"><h3>Attack type distribution <span class="hint">train.csv, 10,684 events</span></h3>
+        <div class="chart" id="cc-dist"></div></div>
+      <div class="panel"><h3>Cyber risk distribution <span class="hint">test split, derived indicator</span></h3>
+        <div class="chart" id="cc-risk"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>Top feature importance <span class="hint">SHAP, global</span></h3>
+        <div class="chart" id="cc-importance"></div></div>
+      <div class="panel"><h3>Mean risk score by predicted class</h3>
+        <div class="chart" id="cc-riskbyclass"></div></div>
+    </div>
+    <div class="panel"><h3>Latest events <span class="hint">most recent by timestamp, test split</span></h3>
+      <table id="cc-latest"><thead><tr><th>Event ID</th><th>Timestamp</th><th>Predicted</th>
+        <th class="num">Confidence</th><th class="num">Risk</th><th>Category</th></tr></thead>
+        <tbody></tbody></table></div>
+  </section>
+
+  <!-- ===================== ATTACK EXPLORER ===================== -->
+  <section class="tab" id="tab-explorer">
+    <div class="panel">
+      <div class="filters">
+        <div><label>Attack class</label><select id="fl-class"><option value="all">All</option>
+          <option value="0">Type 0</option><option value="1">Type 1</option><option value="2">Type 2</option></select></div>
+        <div><label>Risk category</label><select id="fl-risk"><option value="all">All</option>
+          <option value="LOW">LOW</option><option value="MEDIUM">MEDIUM</option>
+          <option value="HIGH">HIGH</option><option value="CRITICAL">CRITICAL</option></select></div>
+        <div><label>Correctness</label><select id="fl-correct"><option value="all">All</option>
+          <option value="correct">Correct</option><option value="incorrect">Incorrect</option></select></div>
+        <div><label>Min confidence</label><input type="range" id="fl-conf" min="0.33" max="1" step="0.01" value="0.33">
+          <span id="fl-conf-val" class="mono muted">0.33</span></div>
+        <div><label>Search event ID</label><input type="text" id="fl-search" placeholder="e.g. 6646"></div>
+      </div>
+      <p class="muted" id="ex-count"></p>
+      <table id="ex-table"><thead><tr>
+        <th>Event ID</th><th>Timestamp</th><th>True</th><th>Predicted</th>
+        <th class="num">Confidence</th><th class="num">Risk</th><th>Category</th><th>Counterfactual</th><th>Featured</th>
+      </tr></thead><tbody></tbody></table>
+      <div class="pager">
+        <button id="ex-prev">← Prev</button><span id="ex-pageinfo"></span><button id="ex-next">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INVESTIGATION ===================== -->
+  <section class="tab" id="tab-investigation">
+    <div class="eventpicker">
+      <button class="navbtn" id="inv-prev">← Prev event</button>
+      <input type="number" id="inv-jump" placeholder="test-split index (0-1602)">
+      <button class="navbtn" id="inv-go">Go</button>
+      <button class="navbtn" id="inv-next">Next event →</button>
+      <span class="muted">Featured events:</span>
+      <span id="inv-featured-chips"></span>
+    </div>
+    <div class="panel" id="inv-header"></div>
+    <div class="grid2">
+      <div class="panel"><h3>Class probabilities</h3><div class="chart short" id="inv-proba"></div></div>
+      <div class="panel"><h3>Top contributing features <span class="hint">SHAP, this event</span></h3>
+        <div class="chart short" id="inv-shap"></div></div>
+    </div>
+    <div class="panel" id="inv-cf"></div>
+    <div class="panel" id="inv-genai"></div>
+  </section>
+
+  <!-- ===================== EXPLAINABILITY ===================== -->
+  <section class="tab" id="tab-explainability">
+    <div class="note">Three independent importance measures are shown side by side, each normalized to its own
+      maximum (0–1) so their shapes can be compared even though their raw units differ. Actual (non-normalized)
+      values are in <span class="mono">results/shap_importance.csv</span>.</div>
+    <div class="panel"><h3>Feature importance comparison <span class="hint">model-native vs SHAP vs permutation</span></h3>
+      <div class="chart tall" id="ex2-compare"></div></div>
+    <div class="panel" id="ex2-notes"></div>
+  </section>
+
+  <!-- ===================== COUNTERFACTUAL SIMULATOR ===================== -->
+  <section class="tab" id="tab-simulator">
+    <div class="note">Every slider move re-runs the <strong>actual trained XGBoost model</strong> (900 real trees,
+      exported and evaluated client-side — verified to match the Python model's output to within ~1e-4) on the
+      modified feature vector. Nothing here is pre-scripted.</div>
+    <div class="eventpicker">
+      <label class="muted">Simulate event (test-split index): </label>
+      <input type="number" id="sim-jump" placeholder="0-1602">
+      <button class="navbtn" id="sim-go">Load</button>
+      <button class="navbtn" id="sim-reset">Reset sliders</button>
+    </div>
+    <div class="twocol">
+      <div class="panel">
+        <h3>Actionable levers <span class="hint">only features a security team could plausibly control</span></h3>
+        <div id="sim-sliders"></div>
+      </div>
+      <div class="panel">
+        <h3>Current vs. simulated</h3>
+        <div class="grid2" style="margin-bottom:10px">
+          <div><div class="muted" style="font-size:12px">ORIGINAL</div>
+            <div id="sim-orig" class="mono" style="font-size:15px"></div></div>
+          <div><div class="muted" style="font-size:12px">SIMULATED</div>
+            <div id="sim-new" class="mono" style="font-size:15px"></div></div>
+        </div>
+        <div class="chart short" id="sim-chart"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MODEL EVALUATION ===================== -->
+  <section class="tab" id="tab-evaluation">
+    <div class="panel"><h3>Model comparison <span class="hint">held-out test split, all real</span></h3>
+      <table id="ev-table"></table>
+      <div class="chart" id="ev-compare-chart" style="margin-top:14px"></div></div>
+    <div class="grid2">
+      <div class="panel"><h3>Confusion matrix <span class="hint">final model (XGBoost)</span></h3>
+        <button class="navbtn" id="ev-cm-toggle" style="margin-bottom:10px">Show normalized</button>
+        <div class="chart" id="ev-cm"></div></div>
+      <div class="panel"><h3>Per-class precision / recall / F1</h3><div class="chart" id="ev-perclass"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>ROC curves <span class="hint">one-vs-rest</span></h3><div class="chart" id="ev-roc"></div></div>
+      <div class="panel"><h3>Precision-recall curves <span class="hint">one-vs-rest</span></h3><div class="chart" id="ev-pr"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h3>Calibration <span class="hint">reliability diagram, one-vs-rest</span></h3><div class="chart" id="ev-calib"></div></div>
+      <div class="panel"><h3>Confidence distribution</h3><div class="chart" id="ev-conf"></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== RESEARCH & ABLATION ===================== -->
+  <section class="tab" id="tab-research">
+    <div class="grid2">
+      <div class="panel"><h3>Ablation study <span class="hint">Macro F1, same splits, XGBoost</span></h3>
+        <div class="chart short" id="rs-ablation"></div>
+        <p class="muted" id="rs-ablation-note" style="margin-top:8px;font-size:12.5px"></p></div>
+      <div class="panel"><h3>Intervention ranking <span class="hint">mean probability change, method 1</span></h3>
+        <div class="chart short" id="rs-ranking"></div></div>
+    </div>
+    <div class="panel"><h3>Counterfactual method comparison <span class="hint">120 events, 3 real methods</span></h3>
+      <table id="rs-cfmethods"></table></div>
+    <div class="panel"><h3>Error analysis <span class="hint">159 real misclassifications on the test split</span></h3>
+      <div id="rs-error"></div></div>
+  </section>
+
+  <!-- ===================== AI SECURITY ANALYST ===================== -->
+  <section class="tab" id="tab-analyst">
+    <div class="note">GenAI layer configuration: Claude generates these narratives directly from the application's
+      structured JSON evidence (no external LLM API key configured for this deployment). The ML prediction, SHAP
+      values, risk score, and counterfactual numbers were all computed beforehand by the Python pipeline — the
+      GenAI layer only narrates them and never invents figures. Because this is a static deliverable (not a live
+      backend), narratives below are pre-generated for a curated set of "Featured Events" rather than an
+      open-ended chat.</div>
+    <div id="an-cards"></div>
+    <div class="panel"><h3>Anti-hallucination / grounding tests <span class="hint">self-assessed, see note below</span></h3>
+      <table id="an-tests"></table>
+      <p class="muted" id="an-note" style="margin-top:10px;font-size:12px"></p></div>
+  </section>
+
+  <!-- ===================== DATASET & EDA ===================== -->
+  <section class="tab" id="tab-eda">
+    <div class="panel" id="eda-quality"></div>
+    <div class="grid2">
+      <div class="panel"><h3>Feature correlation <span class="hint">Pearson, train split, raw features</span></h3>
+        <div class="chart tall" id="eda-corr"></div></div>
+      <div class="panel"><h3>Distribution by attack class</h3>
+        <select id="eda-feat-select" style="margin-bottom:10px;background:var(--panel-2);border:1px solid var(--border);color:var(--text);padding:6px;border-radius:5px"></select>
+        <div class="chart" id="eda-box"></div></div>
+    </div>
+    <div class="panel"><h3>Event volume by hour of day &amp; predicted class</h3>
+      <div class="chart" id="eda-hour"></div></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  GenAI-CyberTwin — built on the KAUST Cyber Attack Detection dataset (Kaggle: kaust-ioai-l-1-2026-round-2).
+  Every figure in this dashboard was computed by the project's own pipeline (see <span class="mono">src/</span> and
+  <span class="mono">results/</span>) — nothing is hard-coded or fabricated. Class semantics for Attack Type 0/1/2
+  are not documented by the competition; interpretations here are statistical, not confirmed ground truth.
+</footer>
+
+<script type="application/json" id="data-blob">__DASHBOARD_DATA__</script>
+<script type="application/json" id="model-blob">__MODEL_DATA__</script>
+<script>
+const DATA = JSON.parse(document.getElementById('data-blob').textContent);
+const MODEL = JSON.parse(document.getElementById('model-blob').textContent);
+const FIDX = {}; DATA.feature_names.forEach((f,i)=>FIDX[f]=i);
+const CLASS_COLORS = ['#3ecfd6','#6c7fee','#e07a9e'];
+const RISK_COLORS = {LOW:'#3ecf8e',MEDIUM:'#e8b94c',HIGH:'#ef8354',CRITICAL:'#e5484d'};
+
+function $(s,root){return (root||document).querySelector(s)}
+function $all(s,root){return Array.from((root||document).querySelectorAll(s))}
+function pct(x,d){return (x*100).toFixed(d===undefined?1:d)+'%'}
+function num(x,d){return Number(x).toFixed(d===undefined?2:d)}
+function esc(s){return String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+
+const BASE_LAYOUT = {
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{color:'#dfe6ee', family:'-apple-system,Segoe UI,sans-serif', size:12},
+  margin:{t:20,l:50,r:16,b:40},
+  xaxis:{gridcolor:'#232c38', zerolinecolor:'#2c3644', linecolor:'#2c3644'},
+  yaxis:{gridcolor:'#232c38', zerolinecolor:'#2c3644', linecolor:'#2c3644'},
+  legend:{font:{color:'#8b97a6', size:11}},
+  colorway:CLASS_COLORS,
+};
+function layout(overrides){
+  const l = JSON.parse(JSON.stringify(BASE_LAYOUT));
+  return Object.assign(l, overrides||{});
+}
+const PCONF = {displayModeBar:false, responsive:true};
+function plot(id, traces, lay){
+  if (typeof Plotly === 'undefined') { document.getElementById(id).innerHTML =
+    '<p class="muted">Chart library failed to load (offline?).</p>'; return; }
+  Plotly.newPlot(id, traces, layout(lay), PCONF);
+}
+
+// ---------------- XGBoost JS tree evaluator (verified to match Python) ----------------
+function evalTree(node, x){
+  while (node.v === undefined){
+    const val = x[node.f];
+    const goLeft = (val===null||Number.isNaN(val)) ? node.m : (val < node.t);
+    node = goLeft ? node.l : node.r;
+  }
+  return node.v;
+}
+function predictProba(xArr){
+  const margins = MODEL.base_score.slice();
+  for (let i=0;i<MODEL.trees.length;i++){ margins[i%MODEL.n_classes] += evalTree(MODEL.trees[i], xArr); }
+  const m = Math.max(...margins);
+  const exps = margins.map(v=>Math.exp(v-m));
+  const s = exps.reduce((a,b)=>a+b,0);
+  return exps.map(v=>v/s);
+}
+function computeRisk(featureVector, probabilities){
+  const rs = DATA.risk_summary, bounds = DATA.risk_normalization_bounds;
+  const devProb = 1 - probabilities[0];
+  let anomaly = 0;
+  for (const [feat,w] of Object.entries(rs.anomaly_feature_weights)){
+    const [lo,hi] = bounds[feat];
+    let norm = (featureVector[FIDX[feat]] - lo) / (hi - lo + 1e-9);
+    norm = Math.max(0, Math.min(1, norm));
+    anomaly += w*norm;
+  }
+  const raw = rs.alpha*devProb + (1-rs.alpha)*anomaly;
+  return Math.max(0, Math.min(100, 100*raw));
+}
+function riskCategory(score){
+  const t = DATA.risk_summary.thresholds;
+  if (score>=t.CRITICAL) return 'CRITICAL';
+  if (score>=t.HIGH) return 'HIGH';
+  if (score>=t.MEDIUM) return 'MEDIUM';
+  return 'LOW';
+}
+
+// ---------------- Tabs ----------------
+const renderedTabs = new Set();
+function switchTab(name){
+  $all('nav.tabs button').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
+  $all('main .tab').forEach(s=>s.classList.toggle('active', s.id==='tab-'+name));
+  if (!renderedTabs.has(name)){ renderedTabs.add(name); RENDERERS[name] && RENDERERS[name](); }
+  if (typeof Plotly !== 'undefined') {
+    setTimeout(()=>{ $all('#tab-'+name+' .chart').forEach(el=>{ try{Plotly.Plots.resize(el)}catch(e){} }); }, 50);
+  }
+}
+$all('nav.tabs button').forEach(b=>b.addEventListener('click', ()=>switchTab(b.dataset.tab)));
+
+/* ===================== HEADER ===================== */
+function renderHeader(){
+  const xgb = DATA.model_comparison.find(m=>m.model==='XGBoost');
+  $('#hdr-model').textContent = DATA.meta.final_model;
+  $('#hdr-f1').textContent = num(xgb.macro_f1,3);
+  $('#hdr-n').textContent = DATA.events.length;
+}
+
+/* ===================== COMMAND CENTER ===================== */
+function renderCommandCenter(){
+  const dr = DATA.dataset_report;
+  const xgb = DATA.model_comparison.find(m=>m.model==='XGBoost');
+  const riskCounts = DATA.risk_summary.category_counts;
+  const highCrit = (riskCounts.HIGH||0) + (riskCounts.CRITICAL||0);
+  const kpis = [
+    ['Total events (train)', dr.train_rows.toLocaleString()],
+    ['Test-split events', DATA.events.length.toLocaleString()],
+    ['Macro F1 (final model)', num(xgb.macro_f1,3)],
+    ['Accuracy', pct(xgb.accuracy,1)],
+    ['High/Critical risk events', highCrit.toLocaleString()+' / '+DATA.events.length],
+    ['Avg. confidence', pct(DATA.confidence_summary.mean_confidence_overall,1)],
+  ];
+  $('#cc-kpis').innerHTML = kpis.map(([l,v])=>`<div class="kpi"><div class="label">${l}</div><div class="value accent">${v}</div></div>`).join('');
+
+  const classCounts = dr.class_distribution_counts;
+  plot('cc-dist', [{type:'pie', labels:Object.keys(classCounts).map(k=>'Attack Type '+k),
+    values:Object.values(classCounts), hole:0.55, marker:{colors:CLASS_COLORS},
+    textfont:{color:'#0a0e14'}}], {margin:{t:10,l:10,r:10,b:10}});
+
+  const riskCats = ['LOW','MEDIUM','HIGH','CRITICAL'];
+  plot('cc-risk', [{type:'bar', x:riskCats, y:riskCats.map(c=>riskCounts[c]||0),
+    marker:{color:riskCats.map(c=>RISK_COLORS[c])}}], {yaxis:{title:'events'}});
+
+  const topImp = DATA.shap_importance.slice(0,8).reverse();
+  plot('cc-importance', [{type:'bar', orientation:'h', x:topImp.map(d=>d.shap_importance),
+    y:topImp.map(d=>d.feature), marker:{color:'#3ecfd6'}}], {margin:{t:10,l:150,r:16,b:30}});
+
+  const mrbc = DATA.risk_summary.mean_risk_by_predicted_class;
+  plot('cc-riskbyclass', [{type:'bar', x:Object.keys(mrbc).map(k=>'Type '+k), y:Object.values(mrbc),
+    marker:{color:CLASS_COLORS}}], {yaxis:{title:'mean risk score'}});
+
+  const latest = [...DATA.events].sort((a,b)=>b.timestamp.localeCompare(a.timestamp)).slice(0,10);
+  $('#cc-latest tbody').innerHTML = latest.map(e=>`<tr>
+    <td class="mono">${e.event_id}</td><td class="mono">${e.timestamp}</td>
+    <td><span class="badge class${e.predicted_label}">Type ${e.predicted_label}</span></td>
+    <td class="num mono">${pct(e.confidence,1)}</td><td class="num mono">${num(e.risk_score,1)}</td>
+    <td><span class="badge ${e.risk_category.toLowerCase()}">${e.risk_category}</span></td></tr>`).join('');
+}
+
+/* ===================== ATTACK EXPLORER ===================== */
+let exPage = 0; const EX_PAGE_SIZE = 25;
+function getFilteredEvents(){
+  const cls = $('#fl-class').value, risk = $('#fl-risk').value, corr = $('#fl-correct').value;
+  const minConf = parseFloat($('#fl-conf').value), search = $('#fl-search').value.trim();
+  return DATA.events.filter(e=>{
+    if (cls!=='all' && String(e.predicted_label)!==cls) return false;
+    if (risk!=='all' && e.risk_category!==risk) return false;
+    if (corr==='correct' && !e.correct) return false;
+    if (corr==='incorrect' && e.correct) return false;
+    if (e.confidence < minConf) return false;
+    if (search && String(e.event_id).indexOf(search)===-1) return false;
+    return true;
+  });
+}
+function renderExplorer(){
+  ['fl-class','fl-risk','fl-correct'].forEach(id=>$('#'+id).addEventListener('change', ()=>{exPage=0; drawExplorerTable();}));
+  $('#fl-conf').addEventListener('input', e=>{ $('#fl-conf-val').textContent = e.target.value; exPage=0; drawExplorerTable(); });
+  $('#fl-search').addEventListener('input', ()=>{exPage=0; drawExplorerTable();});
+  $('#ex-prev').addEventListener('click', ()=>{ if(exPage>0){exPage--; drawExplorerTable();} });
+  $('#ex-next').addEventListener('click', ()=>{ exPage++; drawExplorerTable(); });
+  drawExplorerTable();
+}
+function drawExplorerTable(){
+  const rows = getFilteredEvents();
+  const totalPages = Math.max(1, Math.ceil(rows.length/EX_PAGE_SIZE));
+  exPage = Math.min(exPage, totalPages-1);
+  const page = rows.slice(exPage*EX_PAGE_SIZE, (exPage+1)*EX_PAGE_SIZE);
+  $('#ex-count').textContent = rows.length.toLocaleString()+' events match the current filters (of '+DATA.events.length+' total)';
+  $('#ex-table tbody').innerHTML = page.map(e=>`<tr class="rowlink" data-idx="${e.idx}">
+    <td class="mono">${e.event_id}</td><td class="mono">${e.timestamp}</td>
+    <td><span class="badge class${e.true_label}">Type ${e.true_label}</span></td>
+    <td><span class="badge class${e.predicted_label}">Type ${e.predicted_label}</span></td>
+    <td class="num mono">${pct(e.confidence,1)}</td><td class="num mono">${num(e.risk_score,1)}</td>
+    <td><span class="badge ${e.risk_category.toLowerCase()}">${e.risk_category}</span></td>
+    <td>${e.has_counterfactual?'<span class="check">✓</span>':'<span class="muted">—</span>'}</td>
+    <td>${e.is_featured?'★':''}</td></tr>`).join('');
+  $all('#ex-table tbody tr').forEach(tr=>tr.addEventListener('click', ()=>{
+    goToInvestigation(parseInt(tr.dataset.idx)); }));
+  $('#ex-pageinfo').textContent = 'page '+(exPage+1)+' of '+totalPages;
+  $('#ex-prev').disabled = exPage===0; $('#ex-next').disabled = exPage>=totalPages-1;
+}
+function goToInvestigation(idx){ selectedEventIdx = idx; switchTab('investigation'); drawInvestigation(); }
+
+/* ===================== INVESTIGATION ===================== */
+let selectedEventIdx = DATA.events.find(e=>e.is_featured).idx;
+function renderInvestigation(){
+  $('#inv-featured-chips').innerHTML = DATA.events.filter(e=>e.is_featured).map(e=>
+    `<span class="chip" data-idx="${e.idx}">#${e.event_id} (Type ${e.predicted_label})</span>`).join('');
+  $all('#inv-featured-chips .chip').forEach(c=>c.addEventListener('click', ()=>{
+    selectedEventIdx = parseInt(c.dataset.idx); drawInvestigation(); }));
+  $('#inv-prev').addEventListener('click', ()=>{ selectedEventIdx=Math.max(0,selectedEventIdx-1); drawInvestigation(); });
+  $('#inv-next').addEventListener('click', ()=>{ selectedEventIdx=Math.min(DATA.events.length-1,selectedEventIdx+1); drawInvestigation(); });
+  $('#inv-go').addEventListener('click', ()=>{
+    const v = parseInt($('#inv-jump').value); if(!isNaN(v)&&v>=0&&v<DATA.events.length){selectedEventIdx=v; drawInvestigation();} });
+  drawInvestigation();
+}
+function drawInvestigation(){
+  const e = DATA.events[selectedEventIdx];
+  $all('#inv-featured-chips .chip').forEach(c=>c.classList.toggle('active', parseInt(c.dataset.idx)===selectedEventIdx));
+  $('#inv-header').innerHTML = `
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div><h3 style="margin-bottom:4px">Event ${e.event_id} <span class="muted mono" style="font-size:12px">(test index ${e.idx})</span></h3>
+        <p class="muted mono" style="font-size:12.5px">${e.timestamp}</p></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="badge class${e.true_label}">True: Type ${e.true_label}</span>
+        <span class="badge class${e.predicted_label}">Predicted: Type ${e.predicted_label}</span>
+        <span class="badge ${e.risk_category.toLowerCase()}">${e.risk_category} · ${num(e.risk_score,1)}</span>
+        ${e.correct?'<span class="check">✓ correct</span>':'<span class="cross">✗ misclassified</span>'}
+      </div></div>`;
+  plot('inv-proba', [{type:'bar', x:['Type 0','Type 1','Type 2'], y:e.probabilities,
+    marker:{color:CLASS_COLORS}}], {yaxis:{range:[0,1],title:'probability'}});
+  const shap = [...e.top_shap].reverse();
+  plot('inv-shap', [{type:'bar', orientation:'h', x:shap.map(s=>s.contribution), y:shap.map(s=>s.feature),
+    marker:{color:shap.map(s=>s.contribution>0?'#ef8354':'#3ecf8e')}}], {margin:{t:10,l:150,r:16,b:30}});
+
+  const cf = DATA.counterfactual_by_idx[String(e.idx)];
+  let cfHtml = '<h3>Counterfactual simulation</h3>';
+  if (cf){
+    cfHtml += `<table><thead><tr><th>Method</th><th>Intervention</th><th class="num">Original P</th>
+      <th class="num">New P</th><th class="num">Δ</th><th>New class</th></tr></thead><tbody>` +
+      cf.map(c=>`<tr><td>${c.method}</td><td>${c.intervention}</td>
+        <td class="num mono">${num(c.original_probability,3)}</td><td class="num mono">${num(c.new_probability,3)}</td>
+        <td class="num mono">${num(c.probability_change,3)}</td>
+        <td>${c.new_class!==c.original_class?'<span class="check">changed → Type '+c.new_class+'</span>':'unchanged'}</td></tr>`).join('') +
+      '</tbody></table>';
+  } else {
+    cfHtml += `<p class="muted">N/A — this event was not included in the 120-event counterfactual sample.
+      See the Research &amp; Ablation tab for the global intervention ranking, or open a Featured Event for a
+      fully worked example.</p>`;
+  }
+  $('#inv-cf').innerHTML = cfHtml;
+
+  let genaiHtml = '<h3>AI Security Analyst</h3>';
+  if (e.is_featured && DATA.genai_narratives[String(e.idx)]){
+    const n = DATA.genai_narratives[String(e.idx)];
+    genaiHtml += `<div class="card"><div class="head"><b>${n.function}</b><span class="fn">Claude · grounded in structured evidence</span></div>
+      <div class="narrative">${mdLite(n.text)}</div></div>`;
+  } else {
+    const top = e.top_shap.slice(0,3).map(s=>s.feature).join(', ');
+    genaiHtml += `<div class="note">Auto-derived summary (not a full GenAI narrative — those are pre-generated for
+      Featured Events; see the AI Security Analyst tab). This event was classified as Attack Type ${e.predicted_label}
+      with ${pct(e.confidence,1)} confidence and a derived risk score of ${num(e.risk_score,1)}/100 (${e.risk_category}).
+      The leading contributing features were ${esc(top)}.</div>`;
+  }
+  $('#inv-genai').innerHTML = genaiHtml;
+}
+function mdLite(text){
+  return esc(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+/* ===================== EXPLAINABILITY ===================== */
+function renderExplainability(){
+  const rows = DATA.shap_importance.slice(0,12);
+  const maxModel = Math.max(...rows.map(r=>Math.abs(r.model_importance)));
+  const maxShap = Math.max(...rows.map(r=>Math.abs(r.shap_importance)));
+  const maxPerm = Math.max(...rows.map(r=>Math.abs(r.permutation_importance)));
+  const feats = rows.map(r=>r.feature);
+  plot('ex2-compare', [
+    {type:'bar', name:'Model importance', x:feats, y:rows.map(r=>r.model_importance/maxModel)},
+    {type:'bar', name:'SHAP importance', x:feats, y:rows.map(r=>r.shap_importance/maxShap)},
+    {type:'bar', name:'Permutation importance', x:feats, y:rows.map(r=>r.permutation_importance/maxPerm)},
+  ], {barmode:'group', xaxis:{tickangle:-35}, yaxis:{title:'normalized importance'}});
+
+  const top = DATA.shap_importance[0];
+  $('#ex2-notes').innerHTML = `<h3>Notes</h3>
+    <p>All three independent importance measures agree: <b class="mono">${top.feature}</b> dominates the model by a
+    wide margin (SHAP importance ${num(top.shap_importance,3)}, roughly ${num(top.shap_importance/DATA.shap_importance[1].shap_importance,1)}x
+    the next feature). This consistency across three different methodologies (the model's own gain-based importance,
+    SHAP, and permutation importance on held-out data) is strong evidence this is a genuine signal rather than an
+    artifact of one particular importance method.</p>
+    <p class="muted">Note: <span class="mono">Login_Attempts</span> shows meaningfully higher model-native importance
+    than permutation importance — this can happen when a feature's information is partially redundant with other
+    features, so randomly shuffling it alone doesn't hurt held-out Macro F1 as much as its role inside the trees
+    might suggest.</p>`;
+}
+
+/* ===================== COUNTERFACTUAL SIMULATOR ===================== */
+let simIdx = null, simOriginalVec = null, simOriginalProba = null, simOriginalRisk = null;
+function renderSimulator(){
+  $('#sim-go').addEventListener('click', ()=>{
+    const v = parseInt($('#sim-jump').value);
+    if (!isNaN(v) && v>=0 && v<DATA.events.length) loadSimEvent(v);
+  });
+  $('#sim-reset').addEventListener('click', ()=>{ if (simIdx!==null) loadSimEvent(simIdx); });
+  const startIdx = DATA.events.find(e=>e.risk_category==='CRITICAL' && e.has_counterfactual).idx;
+  $('#sim-jump').value = startIdx;
+  loadSimEvent(startIdx);
+}
+function loadSimEvent(idx){
+  simIdx = idx;
+  const e = DATA.events[idx];
+  simOriginalVec = e.feature_vector.slice();
+  simOriginalProba = predictProba(simOriginalVec);
+  simOriginalRisk = computeRisk(simOriginalVec, simOriginalProba);
+  const sliders = DATA.actionable_features.map(f=>{
+    const [lo,hi] = DATA.actionable_bounds[f];
+    const val = simOriginalVec[FIDX[f]];
+    const step = (hi-lo)/200;
+    return `<div class="slider-row" data-feat="${f}">
+      <div class="lbl"><b>${DATA.intervention_labels[f]}</b><span class="mono">${f}: <span class="sv">${num(val,2)}</span></span></div>
+      <input type="range" min="${lo}" max="${hi}" step="${step}" value="${val}">
+    </div>`;
+  }).join('');
+  $('#sim-sliders').innerHTML = sliders;
+  $all('#sim-sliders .slider-row').forEach(row=>{
+    row.querySelector('input').addEventListener('input', updateSimulation);
+  });
+  updateSimulation();
+}
+function updateSimulation(){
+  const vec = simOriginalVec.slice();
+  $all('#sim-sliders .slider-row').forEach(row=>{
+    const f = row.dataset.feat, v = parseFloat(row.querySelector('input').value);
+    vec[FIDX[f]] = v; row.querySelector('.sv').textContent = num(v,2);
+  });
+  const proba = predictProba(vec);
+  const risk = computeRisk(vec, proba);
+  const origClass = simOriginalProba.indexOf(Math.max(...simOriginalProba));
+  const newClass = proba.indexOf(Math.max(...proba));
+  $('#sim-orig').innerHTML = `Type ${origClass} · ${pct(simOriginalProba[origClass],1)}<br>Risk ${num(simOriginalRisk,1)}
+    <span class="badge ${riskCategory(simOriginalRisk).toLowerCase()}">${riskCategory(simOriginalRisk)}</span>`;
+  $('#sim-new').innerHTML = `Type ${newClass} · ${pct(proba[origClass],1)} <span class="muted">(of original class)</span><br>
+    Risk ${num(risk,1)} <span class="badge ${riskCategory(risk).toLowerCase()}">${riskCategory(risk)}</span>
+    &nbsp; Δrisk <span class="mono">${risk-simOriginalRisk>=0?'+':''}${num(risk-simOriginalRisk,1)}</span>`;
+  plot('sim-chart', [
+    {type:'bar', name:'Original', x:['Type 0','Type 1','Type 2'], y:simOriginalProba, marker:{color:'#3ecfd6'}},
+    {type:'bar', name:'Simulated', x:['Type 0','Type 1','Type 2'], y:proba, marker:{color:'#ef8354'}},
+  ], {barmode:'group', yaxis:{range:[0,1]}});
+}
+
+/* ===================== MODEL EVALUATION ===================== */
+let cmNormalized = false;
+function renderEvaluation(){
+  const cols = ['model','accuracy','macro_precision','macro_recall','macro_f1','weighted_f1','roc_auc_ovr_macro','training_time_sec'];
+  const labels = {model:'Model', accuracy:'Accuracy', macro_precision:'Macro Prec.', macro_recall:'Macro Recall',
+    macro_f1:'Macro F1', weighted_f1:'Weighted F1', roc_auc_ovr_macro:'ROC-AUC', training_time_sec:'Train time (s)'};
+  $('#ev-table').innerHTML = '<thead><tr>'+cols.map(c=>`<th${c==='model'?'':' class="num"'}>${labels[c]}</th>`).join('')+'</tr></thead>'+
+    '<tbody>'+DATA.model_comparison.map(m=>'<tr>'+cols.map(c=>{
+      const v = m[c]; const isModel = c==='model';
+      const cell = isModel ? (v===DATA.meta.final_model?`<b class="mono" style="color:var(--accent)">${v} ★</b>`:v)
+        : `<span class="mono">${typeof v==='number'?num(v, c==='training_time_sec'?2:3):v}</span>`;
+      return `<td${isModel?'':' class="num"'}>${cell}</td>`;
+    }).join('')+'</tr>').join('')+'</tbody>';
+
+  const models = DATA.model_comparison.map(m=>m.model);
+  plot('ev-compare-chart', [
+    {type:'bar', name:'Accuracy', x:models, y:DATA.model_comparison.map(m=>m.accuracy)},
+    {type:'bar', name:'Macro F1', x:models, y:DATA.model_comparison.map(m=>m.macro_f1)},
+  ], {barmode:'group', yaxis:{title:'score'}});
+
+  drawConfusionMatrix();
+  $('#ev-cm-toggle').addEventListener('click', ()=>{
+    cmNormalized = !cmNormalized;
+    $('#ev-cm-toggle').textContent = cmNormalized ? 'Show raw counts' : 'Show normalized';
+    drawConfusionMatrix();
+  });
+
+  const cr = DATA.classification_report;
+  const classes = ['0','1','2'];
+  plot('ev-perclass', [
+    {type:'bar', name:'Precision', x:classes.map(c=>'Type '+c), y:classes.map(c=>cr[c].precision)},
+    {type:'bar', name:'Recall', x:classes.map(c=>'Type '+c), y:classes.map(c=>cr[c].recall)},
+    {type:'bar', name:'F1', x:classes.map(c=>'Type '+c), y:classes.map(c=>cr[c]['f1-score'])},
+  ], {barmode:'group', yaxis:{range:[0,1]}});
+
+  const rocTraces = Object.entries(DATA.roc).map(([k,v],i)=>({type:'scatter', mode:'lines', name:'Type '+k+' (AUC '+num(v.auc,3)+')',
+    x:v.fpr, y:v.tpr, line:{color:CLASS_COLORS[i]}}));
+  rocTraces.push({type:'scatter', mode:'lines', name:'chance', x:[0,1], y:[0,1], line:{dash:'dot', color:'#8b97a6'}});
+  plot('ev-roc', rocTraces, {xaxis:{title:'FPR'}, yaxis:{title:'TPR'}});
+
+  const prTraces = Object.entries(DATA.pr).map(([k,v],i)=>({type:'scatter', mode:'lines', name:'Type '+k+' (AP '+num(v.average_precision,3)+')',
+    x:v.recall, y:v.precision, line:{color:CLASS_COLORS[i]}}));
+  plot('ev-pr', prTraces, {xaxis:{title:'Recall'}, yaxis:{title:'Precision'}});
+
+  const calTraces = Object.entries(DATA.calibration).map(([k,v],i)=>({type:'scatter', mode:'lines+markers',
+    name:'Type '+k+' (Brier '+num(v.brier_score,3)+')', x:v.mean_predicted, y:v.mean_actual, line:{color:CLASS_COLORS[i]}}));
+  calTraces.push({type:'scatter', mode:'lines', name:'perfect calibration', x:[0,1], y:[0,1], line:{dash:'dot', color:'#8b97a6'}});
+  plot('ev-calib', calTraces, {xaxis:{title:'mean predicted probability'}, yaxis:{title:'observed frequency'}});
+
+  const h = DATA.confidence_hist;
+  const centers = h.edges.slice(0,-1).map((e,i)=>(e+h.edges[i+1])/2);
+  plot('ev-conf', [{type:'bar', x:centers, y:h.counts, marker:{color:'#6c7fee'}}],
+    {xaxis:{title:'max class probability'}, yaxis:{title:'count'}});
+}
+function drawConfusionMatrix(){
+  const m = cmNormalized ? DATA.confusion_matrix_norm : DATA.confusion_matrix;
+  const text = m.map(row=>row.map(v=>cmNormalized?pct(v,1):v));
+  plot('ev-cm', [{type:'heatmap', z:m, x:['Pred 0','Pred 1','Pred 2'], y:['Actual 0','Actual 1','Actual 2'],
+    colorscale:[[0,'#10161f'],[1,'#3ecfd6']], showscale:false,
+    text:text, texttemplate:'%{text}', textfont:{color:'#0a0e14', size:14}}],
+    {margin:{t:10,l:70,r:10,b:40}});
+}
+
+/* ===================== RESEARCH & ABLATION ===================== */
+function renderResearch(){
+  const variantLabel = {A_raw_only:'A: raw only', B_raw_plus_temporal:'B: raw+temporal', C_full_feature_set:'C: full set'};
+  plot('rs-ablation', [{type:'bar', x:DATA.ablation.map(a=>variantLabel[a.variant]||a.variant), y:DATA.ablation.map(a=>a.macro_f1),
+    marker:{color:'#3ecfd6'}}], {yaxis:{title:'Macro F1', range:[0.8,0.88]}});
+  $('#rs-ablation-note').textContent = DATA.ablation_note;
+
+  const ranking = DATA.intervention_ranking;
+  plot('rs-ranking', [{type:'bar', orientation:'h', x:ranking.map(r=>r.mean), y:ranking.map(r=>r.intervention),
+    marker:{color:ranking.map(r=>r.mean<0?'#3ecf8e':'#ef8354')}}], {margin:{t:10,l:230,r:20,b:30},
+    xaxis:{title:'mean Δ probability (negative = risk reduced)'}});
+
+  const cm = DATA.counterfactual_metrics;
+  const methodOrder = ['single_feature','multi_feature_greedy','optimization_differential_evolution'];
+  const methodLabel = {single_feature:'Method 1: single-feature', multi_feature_greedy:'Method 2: multi-feature (greedy)',
+    optimization_differential_evolution:'Method 3: differential evolution'};
+  $('#rs-cfmethods').innerHTML = '<thead><tr><th>Method</th><th class="num">Validity rate</th>'+
+    '<th class="num">Mean sparsity</th><th class="num">Mean proximity</th><th class="num">Mean plausibility</th></tr></thead><tbody>'+
+    methodOrder.map(k=>{const v=cm[k]; return `<tr><td>${methodLabel[k]}</td><td class="num mono">${pct(v.validity_rate,1)}</td>
+      <td class="num mono">${num(v.mean_sparsity,2)}</td><td class="num mono">${num(v.mean_proximity,2)}</td>
+      <td class="num mono">${pct(v.mean_plausibility,1)}</td></tr>`;}).join('') +
+    `<tr><td colspan="4" class="muted">Stability (top-feature consistency across 5 reruns, 20-event sample)</td>
+      <td class="num mono">${pct(cm.stability_mean_top_feature_consistency,1)}</td></tr></tbody>`;
+
+  const es = DATA.error_summary;
+  $('#rs-error').innerHTML = `<div class="grid3">
+    <div class="kpi"><div class="label">Total errors / test events</div><div class="value">${es.total_errors} / ${es.total_test_events}</div></div>
+    <div class="kpi"><div class="label">Error rate</div><div class="value">${pct(es.error_rate,1)}</div></div>
+    <div class="kpi"><div class="label">Most common confusion</div><div class="value" style="font-size:16px">${es.most_common_confusion.replace('_to_',' → Type ')}</div></div>
+    </div>
+    <p style="margin-top:12px">Confusion breakdown: ${Object.entries(es.confusion_pair_counts).map(([k,v])=>`<span class="mono">${k.replace('_to_',' → ')}: ${v}</span>`).join(' &nbsp;|&nbsp; ')}</p>
+    <p class="muted">All test-set errors fall between Attack Type 1 and Attack Type 2 — Attack Type 0 is separated
+    perfectly (0 errors). ${es['n_high_confidence_errors_gt_0.8']} errors were made with &gt;80% confidence,
+    and ${es['n_low_confidence_errors_lt_0.6']} with &lt;60% confidence.</p>`;
+}
+
+/* ===================== AI SECURITY ANALYST ===================== */
+function renderAnalyst(){
+  const cards = Object.entries(DATA.genai_narratives).map(([idx,n])=>{
+    const e = DATA.events[parseInt(idx)];
+    return `<div class="card"><div class="head">
+      <b>Event ${n.event_id} — ${n.function}</b>
+      <span class="fn">test index ${idx} · Type ${e.predicted_label} · ${e.risk_category}</span></div>
+      <div class="narrative">${mdLite(n.text)}</div>
+      <button class="navbtn" style="margin-top:8px" data-idx="${idx}">Open in Investigation →</button></div>`;
+  }).join('');
+  $('#an-cards').innerHTML = cards;
+  $all('#an-cards button').forEach(b=>b.addEventListener('click', ()=>goToInvestigation(parseInt(b.dataset.idx))));
+
+  $('#an-tests').innerHTML = '<thead><tr><th>Scenario</th><th>Expected behavior</th><th>Result excerpt</th><th>Passed</th></tr></thead><tbody>'+
+    DATA.grounding_tests.map(t=>`<tr><td>${esc(t.scenario)}</td><td class="muted">${esc(t.expected_behavior)}</td>
+      <td class="muted" style="max-width:320px">${esc(t.actual_output_excerpt)}</td>
+      <td>${(t.passed===true||t.passed==='True')?'<span class="check">✓</span>':'<span class="cross">✗</span>'}</td></tr>`).join('')+'</tbody>';
+  $('#an-note').textContent = 'These are manual/self-assessed grounding checks against Claude\'s own generated narratives, not an automated pytest suite scoring an external LLM API — stated explicitly rather than presented as a fully automated evaluation harness.';
+}
+
+/* ===================== DATASET & EDA ===================== */
+function renderEda(){
+  const dr = DATA.dataset_report;
+  const negFeatures = Object.entries(dr.numeric_ranges).filter(([f,r])=>r.negative_count>0);
+  $('#eda-quality').innerHTML = `<h3>Data quality — actual findings</h3>
+    <div class="grid3" style="margin-bottom:12px">
+      <div class="kpi"><div class="label">Missing cells</div><div class="value">${Object.values(dr.missing_values_train).reduce((a,b)=>a+b,0)}</div></div>
+      <div class="kpi"><div class="label">Duplicate rows</div><div class="value">${dr.duplicate_rows_train}</div></div>
+      <div class="kpi"><div class="label">Features with negative values</div><div class="value">${negFeatures.length} / ${Object.keys(dr.numeric_ranges).length}</div></div>
+    </div>
+    <p class="muted">train.csv: ${dr.train_rows.toLocaleString()} rows × ${dr.train_columns} columns.
+    test.csv: ${dr.test_rows.toLocaleString()} rows × ${dr.test_columns} columns. Timestamp range:
+    ${dr.timestamp_min} to ${dr.timestamp_max}. See <span class="mono">data/reports/dataset_report.md</span> for the
+    full per-feature quality discussion (which negative values are structurally impossible vs. ambiguous without a
+    data dictionary).</p>`;
+
+  const corr = DATA.eda_correlation;
+  plot('eda-corr', [{type:'heatmap', z:corr.matrix, x:corr.features, y:corr.features,
+    colorscale:'RdBu', zmin:-1, zmax:1, reversescale:true}], {margin:{t:10,l:150,r:10,b:110}});
+
+  const feats = Object.keys(DATA.eda_boxplots);
+  $('#eda-feat-select').innerHTML = feats.map(f=>`<option value="${f}">${f}</option>`).join('');
+  $('#eda-feat-select').addEventListener('change', drawEdaBox);
+  drawEdaBox();
+
+  const hm = DATA.eda_hour_heatmap;
+  plot('eda-hour', [{type:'heatmap', z:hm.matrix, x:hm.hours, y:['Type 0','Type 1','Type 2'],
+    colorscale:[[0,'#10161f'],[1,'#6c7fee']]}], {xaxis:{title:'hour of day'}, margin:{t:10,l:70,r:10,b:40}});
+}
+function drawEdaBox(){
+  const feat = $('#eda-feat-select').value;
+  const stats = DATA.eda_boxplots[feat];
+  const classes = ['0','1','2'];
+  const traces = classes.map((c,i)=>{
+    const s = stats[c];
+    return {type:'bar', orientation:'h', name:'Type '+c, x:[s.q3-s.q1], y:['Type '+c], base:[s.q1],
+      marker:{color:CLASS_COLORS[i]},
+      error_x:{type:'data', symmetric:false, array:[s.max-s.q3], arrayminus:[s.q1-s.min], color:'#8b97a6'},
+      hovertext:`min ${s.min}, q1 ${s.q1}, median ${s.median}, q3 ${s.q3}, max ${s.max}`, hoverinfo:'text'};
+  });
+  plot('eda-box', traces, {showlegend:false, xaxis:{title:feat}, margin:{t:10,l:70,r:20,b:40}});
+}
+
+/* ===================== BOOT ===================== */
+const RENDERERS = {
+  command: renderCommandCenter, explorer: renderExplorer, investigation: renderInvestigation,
+  explainability: renderExplainability, simulator: renderSimulator, evaluation: renderEvaluation,
+  research: renderResearch, analyst: renderAnalyst, eda: renderEda,
+};
+renderHeader();
+renderedTabs.add('command'); renderCommandCenter();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+{
+  "validation_results": {
+    "MajorityBaseline": {
+      "accuracy": 0.5021834061135371,
+      "macro_precision": 0.16739446870451236,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.22286821705426355,
+      "weighted_f1": 0.3357621610642835,
+      "roc_auc_ovr_macro": 0.5,
+      "log_loss": 17.94312876139456,
+      "brier_score": 0.3318777292576419,
+      "training_time_sec": 0.00047516822814941406,
+      "inference_time_sec_per_row": 7.555623093174906e-08
+    },
+    "LogisticRegression": {
+      "accuracy": 0.8727386150966937,
+      "macro_precision": 0.8378558396909984,
+      "macro_recall": 0.830063308259725,
+      "macro_f1": 0.8332081262989441,
+      "weighted_f1": 0.870334481753908,
+      "roc_auc_ovr_macro": 0.9647960280615204,
+      "log_loss": 0.28645421935797855,
+      "brier_score": 0.05825905797458155,
+      "training_time_sec": 0.04633450508117676,
+      "inference_time_sec_per_row": 4.13923210006019e-07
+    },
+    "DecisionTree": {
+      "accuracy": 0.8727386150966937,
+      "macro_precision": 0.8296094299788881,
+      "macro_recall": 0.8295603015075376,
+      "macro_f1": 0.8295568049753431,
+      "weighted_f1": 0.8727290216260851,
+      "roc_auc_ovr_macro": 0.9558474420655827,
+      "log_loss": 0.577644112760573,
+      "brier_score": 0.05903141495383959,
+      "training_time_sec": 0.05220437049865723,
+      "inference_time_sec_per_row": 1.3659614662936681e-06
+    },
+    "RandomForest": {
+      "accuracy": 0.885215221459763,
+      "macro_precision": 0.846568035426731,
+      "macro_recall": 0.8463149078726969,
+      "macro_f1": 0.8462350457424349,
+      "weighted_f1": 0.8851748327269903,
+      "roc_auc_ovr_macro": 0.9694855941678409,
+      "log_loss": 0.24744034184808125,
+      "brier_score": 0.05139991612305858,
+      "training_time_sec": 3.3308699131011963,
+      "inference_time_sec_per_row": 5.645165946137065e-05
+    },
+    "XGBoost": {
+      "accuracy": 0.8870867124142233,
+      "macro_precision": 0.8487886382623225,
+      "macro_recall": 0.8487897822445561,
+      "macro_f1": 0.8487884008084133,
+      "weighted_f1": 0.8870868897269677,
+      "roc_auc_ovr_macro": 0.9691509904226808,
+      "log_loss": 0.25787324461262445,
+      "brier_score": 0.05350771906563049,
+      "training_time_sec": 1.2773487567901611,
+      "inference_time_sec_per_row": 1.9728802771993674e-05
+    }
+  },
+  "final_test_results": {
+    "MajorityBaseline": {
+      "accuracy": 0.5028072364316906,
+      "macro_precision": 0.16760241214389685,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.22305244223052442,
+      "weighted_f1": 0.3364571461718079,
+      "roc_auc_ovr_macro": 0.5,
+      "log_loss": 17.920643637633418,
+      "brier_score": 0.33146184237887294,
+      "training_time_sec": 0.0004134178161621094,
+      "inference_time_sec_per_row": 7.629989462202218e-08
+    },
+    "LogisticRegression": {
+      "accuracy": 0.8858390517779164,
+      "macro_precision": 0.8554912973082373,
+      "macro_recall": 0.8470088161209067,
+      "macro_f1": 0.850622981491528,
+      "weighted_f1": 0.8837714877012914,
+      "roc_auc_ovr_macro": 0.971445165337182,
+      "log_loss": 0.2578817038627143,
+      "brier_score": 0.05148114724478242,
+      "training_time_sec": 0.04754638671875,
+      "inference_time_sec_per_row": 3.2869935110071936e-07
+    },
+    "DecisionTree": {
+      "accuracy": 0.8864628820960698,
+      "macro_precision": 0.8478354923803283,
+      "macro_recall": 0.8477350965575147,
+      "macro_f1": 0.8477334374658839,
+      "weighted_f1": 0.8864471499985093,
+      "roc_auc_ovr_macro": 0.9634816034408217,
+      "log_loss": 0.45722571261495143,
+      "brier_score": 0.05416852392328756,
+      "training_time_sec": 0.053081512451171875,
+      "inference_time_sec_per_row": 1.2648232044165236e-06
+    },
+    "RandomForest": {
+      "accuracy": 0.8958203368683718,
+      "macro_precision": 0.8603082244975924,
+      "macro_recall": 0.8603106633081444,
+      "macro_f1": 0.8603086142793795,
+      "weighted_f1": 0.8958206648873993,
+      "roc_auc_ovr_macro": 0.9741022398402168,
+      "log_loss": 0.23056142087040032,
+      "brier_score": 0.047766914520212284,
+      "training_time_sec": 3.960615396499634,
+      "inference_time_sec_per_row": 5.557056672113505e-05
+    },
+    "XGBoost": {
+      "accuracy": 0.9008109794135996,
+      "macro_precision": 0.86737557322563,
+      "macro_recall": 0.8669458438287153,
+      "macro_f1": 0.8669174507607801,
+      "weighted_f1": 0.9007578543523616,
+      "roc_auc_ovr_macro": 0.9733403539449627,
+      "log_loss": 0.23259666745111401,
+      "brier_score": 0.04855806189152645,
+      "training_time_sec": 1.5023565292358398,
+      "inference_time_sec_per_row": 2.2080713558851446e-05
+    }
+  },
+  "selected_model": "XGBoost",
+  "selection_reason": "XGBoost achieved the highest Macro F1 on the held-out validation split (0.8488), which is the primary metric because classes are imbalanced (~50/25/25). Selection was not based on raw accuracy alone."
+}

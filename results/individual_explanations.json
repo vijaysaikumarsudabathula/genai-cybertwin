@@ -1,0 +1,294 @@
+[
+  {
+    "row_index": 820,
+    "true_label": 0,
+    "predicted_label": 0,
+    "confidence": 0.9999858140945435,
+    "class_probabilities": [
+      0.9999858140945435,
+      1.2416043318808079e-05,
+      1.759002429935208e-06
+    ],
+    "top_features": [
+      {
+        "feature": "Device_Response_Time",
+        "value": 0.0,
+        "shap_contribution": 7.423218250274658,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Login_Attempts",
+        "value": 934.7016827041168,
+        "shap_contribution": 1.0041358470916748,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Threat_Level_Index",
+        "value": -3.2005842471526744,
+        "shap_contribution": 0.8377883434295654,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Malware_Score",
+        "value": -2.8177654595705404,
+        "shap_contribution": 0.46667972207069397,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "User_Behavior_Score",
+        "value": -0.9673085126031254,
+        "shap_contribution": 0.2246730625629425,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Session_Duration",
+        "value": -2.0989908113389264,
+        "shap_contribution": 0.13411633670330048,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Packet_Retry_Rate",
+        "value": 16.42083790836496,
+        "shap_contribution": 0.1113545298576355,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Geo_Dispersion",
+        "value": 17.541631963265157,
+        "shap_contribution": 0.07343388348817825,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Packet_Length_Anomaly",
+        "value": 48.24679302758955,
+        "shap_contribution": 0.060849737375974655,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "hour_cos",
+        "value": -1.0,
+        "shap_contribution": -0.046193934977054596,
+        "direction": "decreases risk"
+      }
+    ]
+  },
+  {
+    "row_index": 1417,
+    "true_label": 1,
+    "predicted_label": 1,
+    "confidence": 0.9998518228530884,
+    "class_probabilities": [
+      1.6335756299667992e-05,
+      0.9998518228530884,
+      0.00013182168186176568
+    ],
+    "top_features": [
+      {
+        "feature": "Threat_Level_Index",
+        "value": 0.2738959322270027,
+        "shap_contribution": 1.1581692695617676,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Device_Response_Time",
+        "value": 157116.41612094676,
+        "shap_contribution": 1.1531922817230225,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Malware_Score",
+        "value": -11.59678183719916,
+        "shap_contribution": 1.0285851955413818,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Login_Attempts",
+        "value": 2088600.1450107165,
+        "shap_contribution": 0.352424293756485,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Session_Duration",
+        "value": -13.888740179957043,
+        "shap_contribution": 0.2772423326969147,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Payload_Entropy",
+        "value": 12.466102629558735,
+        "shap_contribution": 0.17985489964485168,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Suspicious_Port_Activity",
+        "value": 57.104683478693325,
+        "shap_contribution": 0.10069771856069565,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "minute",
+        "value": 39.0,
+        "shap_contribution": 0.09725821018218994,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Anomaly_Tendency",
+        "value": -1.918167896906756,
+        "shap_contribution": 0.08441771566867828,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Packet_Length_Anomaly",
+        "value": 58.03833351486442,
+        "shap_contribution": 0.0648951530456543,
+        "direction": "increases risk"
+      }
+    ]
+  },
+  {
+    "row_index": 71,
+    "true_label": 2,
+    "predicted_label": 2,
+    "confidence": 0.9999575614929199,
+    "class_probabilities": [
+      2.0594936813722597e-06,
+      4.0399238059762865e-05,
+      0.9999575614929199
+    ],
+    "top_features": [
+      {
+        "feature": "Device_Response_Time",
+        "value": 25085135.94380694,
+        "shap_contribution": 3.6159157752990723,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Threat_Level_Index",
+        "value": 13.36128652663857,
+        "shap_contribution": 0.7432888150215149,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Malware_Score",
+        "value": 25.61674562880524,
+        "shap_contribution": 0.5190755724906921,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Geo_Dispersion",
+        "value": 0.9311262780393404,
+        "shap_contribution": 0.2262510508298874,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Traffic_Volume_Variation",
+        "value": 61.50223257536766,
+        "shap_contribution": 0.12171393632888794,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Payload_Entropy",
+        "value": -17.66097541002312,
+        "shap_contribution": 0.11841511726379395,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Suspicious_Port_Activity",
+        "value": 62.17864113070471,
+        "shap_contribution": 0.09621594101190567,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Login_Attempts",
+        "value": 72727309.456899,
+        "shap_contribution": 0.07112706452608109,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Session_Duration",
+        "value": -8.985934349282342,
+        "shap_contribution": -0.06445524096488953,
+        "direction": "decreases risk"
+      },
+      {
+        "feature": "Anomaly_Tendency",
+        "value": -0.5214229743487158,
+        "shap_contribution": -0.06289849430322647,
+        "direction": "decreases risk"
+      }
+    ]
+  },
+  {
+    "row_index": 451,
+    "true_label": 1,
+    "predicted_label": 2,
+    "confidence": 0.9955171942710876,
+    "class_probabilities": [
+      1.513188544777222e-05,
+      0.004467661026865244,
+      0.9955171942710876
+    ],
+    "top_features": [
+      {
+        "feature": "Malware_Score",
+        "value": 40.935346866866205,
+        "shap_contribution": 1.689848780632019,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Geo_Dispersion",
+        "value": 0.4055877213320125,
+        "shap_contribution": 0.47500792145729065,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Threat_Level_Index",
+        "value": 8.859785685296815,
+        "shap_contribution": 0.4033229351043701,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Device_Response_Time",
+        "value": 1604564.7271952613,
+        "shap_contribution": 0.2541578710079193,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Payload_Entropy",
+        "value": -18.87405568013056,
+        "shap_contribution": 0.18792350590229034,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Traffic_Volume_Variation",
+        "value": 69.30725091201879,
+        "shap_contribution": 0.11827052384614944,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Anomaly_Tendency",
+        "value": -11.876034257878924,
+        "shap_contribution": -0.1001579761505127,
+        "direction": "decreases risk"
+      },
+      {
+        "feature": "Suspicious_Port_Activity",
+        "value": 69.09773259427334,
+        "shap_contribution": 0.05122336372733116,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Packet_Length_Anomaly",
+        "value": 68.84825420619153,
+        "shap_contribution": 0.048266664147377014,
+        "direction": "increases risk"
+      },
+      {
+        "feature": "Packet_Retry_Rate",
+        "value": 25.3252331268489,
+        "shap_contribution": 0.0453423447906971,
+        "direction": "increases risk"
+      }
+    ]
+  }
+]
